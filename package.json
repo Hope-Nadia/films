@@ -1,0 +1,37 @@
+{
+  "name": "films",
+  "version": "1.0.0",
+  "description": "Example on using create-react-app with a Node Express Backend",
+  "author": "Esau Silva <esausilva85@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "react-redux": "^5.0.7",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hope-Nadia/films.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Hope-Nadia/films.git/issues"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "create-react-app"
+  ],
+  "homepage": "https://github.com/Hope-Nadia/films#readme",
+  "main": "server.js"
+}
