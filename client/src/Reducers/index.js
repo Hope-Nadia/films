@@ -1,10 +1,7 @@
 import { combineReducers } from 'redux';
+import filmListReducer from './filmListReducer';
 
-const reducer = (state= {user: ''},action) => {
-    switch(action.type) {
-        case 'LOG_IN':
-            return Object.assign({},state,{user: action.payload.user})
-        default: return state;
-    }
-}
+const reducer =combineReducers({
+    filmListReducer
+});
 export default reducer;

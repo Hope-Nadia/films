@@ -1,6 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
-const app = express();
+;const app = express();
+
+
+
 const port = process.env.PORT || 3001;
 
 const mysql = require('mysql');
@@ -13,23 +17,27 @@ let connection = mysql.createConnection({
 });
 connection.connect();
 
-app.get('/hi', (req, res) => {
-    res.send({ express: 'Hello From Express' });
-});
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/film', (req, res) => {
-    connection.query('select filmName from film where idFilm=1',function(err,result){
+app.use(bodyParser.json());
+
+
+
+app.get('/getAllFilms', (req, res) => {
+    connection.query('select idFilm,filmName,shortDescription from film',function(err,result){
         if(err) throw err;
-        res.send({film: result });
+        res.send(result);
     });
 });
 
 app.post('/addFilm', (req, res) => {
-    console.log('ADD_FILM', req);
-    connection.query('insert into film (filmName) values(?)',req.body,function(err,result){
+    let val = [ req.body.nameFilm, req.body.description];
+    console.log(val);
+    connection.query('INSERT INTO film (filmName, description) VALUES(?)',[val],function(err){
         if(err) throw err;
-        res.send({ result });
+        // res.send(val);
     });
+
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

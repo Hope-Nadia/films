@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Home from '../../Components/Home/';
-
+import { connect } from 'react-redux';
 class HomeContainer extends React.Component {
     constructor(props){
         super(props);
@@ -22,19 +22,29 @@ class HomeContainer extends React.Component {
     addFilm() {
         this.addFilmApi()
             .then(res =>{
-                console.log('RESULT OF RESPONSE',JSON.stringify(res));
+                console.log('RESULT OF RESPONSE',res);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log('ERROR',err))
     }
+
     addFilmApi= async()=> {
+        let film = 'newFilm';
+        let desc = 'ddddddd';
         const response = await fetch ('/addFilm',{
-            method: 'post',
-            body: 'newFilm'
+            method: 'POST',
+            body: JSON.stringify({
+                nameFilm : film,
+                description : desc
+            }),
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
         });
         const body = await response.json();
         if (response.status !== 200) throw Error(body.message);
         return body;
     }
+
     getFilmApi= async()=> {
         console.log('Call api');
         const response = await fetch ('/film');
@@ -49,8 +59,16 @@ class HomeContainer extends React.Component {
             addFilm: this.addFilm
         };
         return (
-            <Home {...props}/>
+            <Home filmList ={this.props.filmList}/>
         );
     }
 }
-export default HomeContainer;
+const mapStateToProps = (state) => {
+    console.log(state);
+    return(    {
+        filmList: state.reducer.filmListReducer.filmList
+    });
+
+};
+
+export default connect(mapStateToProps)(HomeContainer);
