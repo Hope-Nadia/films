@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import {combineReducers, createStore} from "redux";
 import {routerReducer} from "react-router-redux";
 
-import App from './Containers/App/index';
+import App from './Containers/App/';
 import reducer from '../src/Reducers/';
 
 injectTapEventPlugin();

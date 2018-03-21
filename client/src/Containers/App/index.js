@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
-import AppComponent from '../../Components/App/App';
+import AppComponent from '../../Components/App/index';
 
 class App extends Component {
 
     render() {
         return (
-            <div id='app'>
                 <AppComponent/>
-            </div>
         );
     }
 }

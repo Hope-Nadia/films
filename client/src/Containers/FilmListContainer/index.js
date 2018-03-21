@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 
+import { getRightFilmList }  from '../../Selectors/';
 import * as actionCreators from "../../Actions/";
-import ListFilm from '../../Components/ListFilm/';
+import ListFilm from '../ListFilm/';
 
 class FilmListContainer extends Component {
 
@@ -13,11 +14,13 @@ class FilmListContainer extends Component {
     }
 
     componentWillMount() {
-        this.getFilmList()
-            .then(res => {
-                this.props.actions.loadFilmList(res);
-            })
-            .catch(err => console.log(err));
+        if(!this.props.firstLoad){
+            this.getFilmList()
+                .then(res => {
+                    this.props.actions.loadFilmList(res);
+                })
+                .catch(err => console.log(err));
+        }
     }
 
     getFilmList = async () => {
@@ -29,14 +32,16 @@ class FilmListContainer extends Component {
 
     render() {
         return (
-                <ListFilm filmList={this.props.filmList}/>
+                <ListFilm filmList={this.props.filmList} firstLoad ={this.props.firstLoad}/>
         );
     }
 }
 
+
 const mapStateToProps = (state) => {
     return {
-        filmList: state.reducer.filmListReducer.filmList
+        filmList: getRightFilmList(state),
+        firstLoad: state.reducer.firstLoadReducer.firstLoad
     }
 };
 
