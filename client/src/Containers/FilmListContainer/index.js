@@ -24,7 +24,7 @@ class FilmListContainer extends Component {
     }
 
     getFilmList = async () => {
-        const response = await fetch('/getAllFilms');
+        const response = await fetch('http://localhost:3000/getAllFilms');
         const body = await response.json();
         if (response.status !== 200) throw Error(body.message);
         return body;

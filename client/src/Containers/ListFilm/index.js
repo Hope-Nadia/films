@@ -7,10 +7,16 @@ class ListFilm extends  React.Component {
     constructor(props){
         super(props);
         this.renderItem = this.renderItem.bind(this);
+        console.log(props);
     }
 
     renderItem(index,key) {
-        return<FilmBox key={key} name={this.props.filmList[index].filmName} description={this.props.filmList[index].shortDescription}/>
+        return<FilmBox
+            name={this.props.filmList[index].filmName}
+            key={key}
+            description={this.props.filmList[index].shortDescription}
+            poster={this.props.filmList[index].poster}
+        />
     }
     render() {
             if(this.props.filmList.length === 0 && this.props.firstLoad) return <div>Nothing to show</div>;

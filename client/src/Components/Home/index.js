@@ -6,7 +6,6 @@ import Paper from 'material-ui/Paper';
 import  styles from './style';
 
 const Home =(props) => {
-    console.log('HOME PROPS', props);
     return (
     <React.Fragment>
         <Link to={'/filmList'}>Film list</Link>

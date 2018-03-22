@@ -13,12 +13,19 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
+    "gh-pages": "^1.1.0",
+    "heroku-cli": "^6.15.36",
+    "main": "server.js",
     "mysql": "^2.15.0",
     "react-list": "^0.8.8",
     "react-redux": "^5.0.7",
     "react-router-redux": "^4.0.8",
     "redux": "^3.7.2",
     "reselect": "^3.0.1"
+  },
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.1"
