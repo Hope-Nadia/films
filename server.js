@@ -10,10 +10,10 @@ const port = process.env.PORT || 3001;
 const mysql = require('mysql');
 
 let connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'filmcatalog'
+    host: 'us-cdbr-iron-east-05.cleardb.net',
+    user: 'b4368d38bd3201',
+    password: '03f44ac6',
+    database: 'heroku_78f1856dd7e3502'
 });
 connection.connect();
 
