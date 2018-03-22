@@ -10,7 +10,6 @@ const Home =(props) => {
     <React.Fragment>
         <Link to={'/filmList'}>Film list</Link>
         <Paper className={props.classes.main}>Film catalog autorization
-            {JSON.stringify(props.filmList)}
         </Paper>
         {/*<button onClick={props.getFilm}>Get film</button>*/}
         {/*<button onClick={props.addFilm}>Add film</button>*/}
