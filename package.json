@@ -37,7 +37,8 @@
   "keywords": [
     "node",
     "express",
-    "create-react-app"
+    "create-react-app",
+    "heroku"
   ],
   "homepage": "https://github.com/Hope-Nadia/films#readme",
   "main": "server.js"
