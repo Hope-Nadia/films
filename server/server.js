@@ -10,9 +10,9 @@ const mysql = require('mysql');
 
 let config = {
     host: 'us-cdbr-iron-east-05.cleardb.net',
-    user: 'b4f011be68d73d',
-    password: 'cba5db19',
-    database: 'heroku_1ec22b50f6da2b8'
+    user: 'bf1d8e55932c6d',
+    password: 'c72ebe3f',
+    database: 'heroku_1b3ae45f7f1923d'
 };
 
 let connection;
