@@ -1,12 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
-
 const app = express();
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+
+const router = express.Router();
 
 const port = process.env.PORT || 3001;
-
-const mysql = require('mysql');
 
 let config = {
     host: 'us-cdbr-iron-east-05.cleardb.net',
@@ -44,7 +44,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
-const staticFiles = express.static(path.resolve(__dirname,'../../client/build'));
+const staticFiles = express.static(path.join(__dirname,'../../client/build'));
 app.use(staticFiles);
 
 app.get('/getAllFilms', (req, res) => {
@@ -54,11 +54,18 @@ app.get('/getAllFilms', (req, res) => {
     });
 });
 
+
+app.use(router);
 app.get('/*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+
+
+
 
 
 
