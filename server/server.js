@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
@@ -14,7 +15,6 @@ let config = {
     database: 'heroku_1ec22b50f6da2b8'
 };
 
-// connection.connect();
 let connection;
 
 function handleDisconnect() {
@@ -44,9 +44,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
-//
-// const staticFiles = express.static( '../../client/build/');
-// app.use(staticFiles);
+
+const staticFiles = express.static(path.resolve(__dirname,'../../client/build'));
+app.use(staticFiles);
 
 app.get('/getAllFilms', (req, res) => {
     connection.query('select idFilm,filmName,shortDescription,poster from films',function(err,result){
@@ -54,6 +54,14 @@ app.get('/getAllFilms', (req, res) => {
         res.send(result);
     });
 });
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
+
+app.listen(port, () => console.log(`Listening on port ${port}`));
+
+
 
 // app.use('/*', staticFiles);
 
@@ -72,5 +80,3 @@ app.get('/getAllFilms', (req, res) => {
 //     });
 //
 // });
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
