@@ -44,7 +44,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
-const staticFiles = express.static(path.join(__dirname,'../../client/build'));
+const staticFiles = express.static(path.join(__dirname, 'build'));
 app.use(staticFiles);
 
 app.get('/getAllFilms', (req, res) => {
@@ -57,8 +57,12 @@ app.get('/getAllFilms', (req, res) => {
 app.use(router);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve( '../client/build', 'index.html'));
+    res.sendFile(path.join( __dirname,'build', 'index.html'));
 });
+
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join( __dirname,'../client/build', 'index.html'));
+// });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
