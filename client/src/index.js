@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import {combineReducers, createStore} from "redux";
 import {routerReducer} from "react-router-redux";
 
-import App from './Containers/App/';
+import AppComponent from './Components/App/';
 import reducer from '../src/Reducers/';
 
 injectTapEventPlugin();
@@ -26,7 +26,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
             <MuiThemeProvider theme={theme}>
-                <App />
+                <AppComponent />
             </MuiThemeProvider>
         </Router>
     </Provider>
