@@ -18,7 +18,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start" : "concurrently \"npm run server\" \"npm run client\"",
+    "start" : "npm run server",
     "server": "cd server && npm run start",
     "client": "cd client && npm run start",
     "build-client": "cd client && npm run build",
