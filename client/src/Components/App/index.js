@@ -9,8 +9,8 @@ const AppComponent = (props)=> {
     return (
         <div className="App">
             <Switch>
-                <Route exact path='/' component={HomeContainer}/>
-                <Route exact path='/filmList' component={FilmListPage}/>
+                <Route exact path={`${process.env.PUBLIC_URL}/`} component={HomeContainer}/>
+                <Route exact path={`${process.env.PUBLIC_URL}/filmList`} component={FilmListPage}/>
                 <Route  component={NotFound}/>
             </Switch>
         </div>
