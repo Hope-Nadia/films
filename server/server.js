@@ -44,13 +44,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
-
 const staticFiles = express.static(path.resolve(__dirname,'../../client/build'));
 app.use(staticFiles);
-
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-});
 
 app.get('/getAllFilms', (req, res) => {
     connection.query('select idFilm,filmName,shortDescription,poster from films',function(err,result){
@@ -58,11 +53,14 @@ app.get('/getAllFilms', (req, res) => {
         res.send(result);
     });
 });
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
-
-// app.use('/*', staticFiles);
 
 // app.get('/images/intesterall.jpg', (req, res) => {
 //         res.sendFile('C:\\Users\\nadzeya.ivanouskaya\\PhpstormProjects\\films\\images\\intesterall.jpg');
