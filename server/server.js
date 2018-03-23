@@ -53,7 +53,9 @@ app.get('/getAllFilms', (req, res) => {
         res.send(result);
     });
 });
-
+app.get('/favicon', (req, res) => {
+res.sendFile(path.join(__dirname + '../client/build/favicon.ico'));
+});
 app.use(router);
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '../client/build/index.html'));
