@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import Select from 'material-ui/Select';
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
+import PropTypes from "prop-types";
 
 import styles from "./style";
 
@@ -23,6 +24,12 @@ const SortField = (props)=>{
             </Select>
         </div>
     )
+};
+
+SortField.propTypes = {
+    classes: PropTypes.object,
+    value: PropTypes.string.isRequired,
+    handleSort: PropTypes.func.isRequired
 };
 
 export default  withStyles(styles)(SortField);

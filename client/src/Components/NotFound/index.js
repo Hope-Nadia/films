@@ -1,6 +1,7 @@
 import React from 'react';
 import Card, { CardContent} from 'material-ui/Card';
 import { withStyles } from 'material-ui/styles';
+import PropTypes from "prop-types";
 
 import  styles from './style';
 
@@ -14,4 +15,9 @@ const NotFound = (props) => {
         </React.Fragment>
     );
 };
+
+NotFound.propTypes = {
+    classes: PropTypes.object
+};
+
 export default withStyles(styles)(NotFound);

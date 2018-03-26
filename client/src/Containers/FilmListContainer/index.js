@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
+import PropTypes from "prop-types";
 
 import { getRightFilmList }  from '../../Selectors/';
 import * as actionCreators from "../../Actions/";
@@ -24,8 +25,9 @@ class FilmListContainer extends Component {
     }
 
     getFilmList = async () => {
-        const response = await fetch('https://salty-island-73231.herokuapp.com/getAllFilms');
-        //  http://localhost:3000/getAllFilms
+        const response = await fetch('http://localhost:3000/getAllFilms');
+        //   https://salty-island-73231.herokuapp.com/getAllFilms
+        // https://salty-island-73231.herokuapp.com/
         const body = await response.json();
         if (response.status !== 200) throw Error(body.message);
         return body;
@@ -50,6 +52,18 @@ const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(actionCreators,dispatch),
     }
+};
+
+FilmListContainer.propTypes = {
+    filmList: PropTypes.array,
+    firstLoad: PropTypes.bool.isRequired,
+    actions: PropTypes.shape({
+        loadFilmList: PropTypes.func,
+        noneSort: PropTypes.func,
+        searchFilm: PropTypes.func,
+        sortByMark: PropTypes.func,
+        sortByName: PropTypes.func
+    })
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(FilmListContainer);

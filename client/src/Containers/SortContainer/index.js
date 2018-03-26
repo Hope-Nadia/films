@@ -7,8 +7,7 @@ import { MenuItem } from 'material-ui/Menu';
 import * as actionCreators from "../../Actions/";
 import { sortingValue} from '../../Selectors/';
 import SortField from '../../Components/SortField/';
-
-
+import PropTypes from "prop-types";
 
 class SortContainer extends Component {
 
@@ -17,7 +16,6 @@ class SortContainer extends Component {
         this.handleSort= this.handleSort.bind(this);
     }
      handleSort(e){
-        console.log(e.target.value, this.props);
         if(e.target.value==='name') this.props.actions.sortByName();
         if(e.target.value==='') this.props.actions.noneSort();
          // if(e.target.value==='mark') this.props.actions.sortByMark();
@@ -43,6 +41,17 @@ const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(actionCreators,dispatch),
     }
+};
+
+SortContainer.propTypes = {
+    sortValue: PropTypes.string,
+    actions: PropTypes.shape({
+        loadFilmList: PropTypes.func,
+        noneSort: PropTypes.func,
+        searchFilm: PropTypes.func,
+        sortByMark: PropTypes.func,
+        sortByName: PropTypes.func
+    })
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(SortContainer);

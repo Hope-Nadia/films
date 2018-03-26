@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactList from 'react-list';
+import PropTypes from "prop-types";
 
 import FilmBox from '../../Components/FilmBox/index';
 
@@ -11,7 +12,7 @@ class ListFilm extends  React.Component {
     }
 
     renderItem(index,key) {
-        return<FilmBox
+        return <FilmBox
             name={this.props.filmList[index].filmName}
             key={key}
             description={this.props.filmList[index].shortDescription}
@@ -32,5 +33,10 @@ class ListFilm extends  React.Component {
     }
 
 } ;
+
+ListFilm.propTypes = {
+    filmList: PropTypes.array,
+    firstLoad: PropTypes.bool.isRequired
+};
 
 export default ListFilm;

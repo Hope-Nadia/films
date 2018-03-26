@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
+import PropTypes from "prop-types";
 
 import * as actionCreators from "../../Actions/";
 import SearchField from '../../Components/SearchField/';
@@ -13,7 +14,6 @@ class SearchFieldContainer extends Component {
     }
 
     handleSearch(e){
-            console.log('Handle search',e.target.value);
             // инициируется событие SEARCH_FILM при котором выставляется фильтр и меняется значение поля поиска
             this.props.actions.searchFilm(e.target.value);
     }
@@ -39,6 +39,17 @@ const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(actionCreators,dispatch),
     }
+};
+
+SearchFieldContainer.propsTypes = {
+    searchFieldValue: PropTypes.string,
+    actions: PropTypes.shape({
+        loadFilmList: PropTypes.func,
+        noneSort: PropTypes.func,
+        searchFilm: PropTypes.func,
+        sortByMark: PropTypes.func,
+        sortByName: PropTypes.func
+    })
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(SearchFieldContainer);
