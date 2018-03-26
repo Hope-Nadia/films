@@ -54,9 +54,10 @@ app.get('/getAllFilms', (req, res) => {
     });
 });
 
-app.get('/images/intesterall.jpg', (req, res) => {
-        res.sendFile('C:\\Users\\nadzeya.ivanouskaya\\PhpstormProjects\\films\\images\\intesterall.jpg');
-});
+// app.get('/images/intesterall.jpg', (req, res) => {
+//     console.log(req);
+//         res.sendFile('C:\\Users\\nadzeya.ivanouskaya\\PhpstormProjects\\films\\images\\intesterall.jpg');
+// });
 
 app.use(router);
 
