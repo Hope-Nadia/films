@@ -54,9 +54,9 @@ app.get('/getAllFilms', (req, res) => {
     });
 });
 
-// app.get('/images/:l', (req, res) => {
-//         res.sendFile(path.join( __dirname,'./images/intesterall.jpg'));
-// });
+app.get('/images/:img', (req, res) => {
+        res.sendFile(path.join( __dirname,`./images/${req.params.img}`));
+});
 
 app.use(router);
 

@@ -8,7 +8,6 @@ class ListFilm extends  React.Component {
     constructor(props){
         super(props);
         this.renderItem = this.renderItem.bind(this);
-        console.log(props);
     }
 
     renderItem(index,key) {
