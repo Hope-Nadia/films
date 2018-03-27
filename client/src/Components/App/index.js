@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import {Route, Switch, Link} from 'react-router-dom';
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
 
-import HomeContainer from '../../Containers/Home/';
-import NotFound from '../NotFound/';
-import FilmListPage from '../FilmListPage/';
+import HomeContainer from '../../HomePage/Containers/Home';
+import NotFound from '../../NotFoundPage/NotFound/index';
+import FilmListPage from '../../FilmListPage/Components/FilmListMain/';
 
-const AppComponent = (props)=> {
+const AppComponent = ()=> {
     return (
         <div className="App">
             <Switch>
