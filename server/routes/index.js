@@ -8,7 +8,7 @@ routes.get('/images/:img', (req, res) => {
 });
 
 routes.get('/getAllFilms', (req, res) => {
-    bd.handleDisconnect().query('select idFilm,filmName,shortDescription,poster from films',function(err,result){
+    bd.handleDisconnect().query('select idFilm,filmName,shortDescription,hposter from films',function(err,result){
         if(err) throw err;
         res.send(result);
     });
