@@ -24,7 +24,7 @@
     "client": "cd client && npm run start",
     "build-client": "cd client && npm run build",
     "start-localy": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "deploy": "npm run build-client && git push heroku master"
+    "deploy": "npm run build-client && git add . && git commit -m 'heroku' && git push heroku master"
   },
   "repository": {
     "type": "git",
