@@ -1,17 +1,14 @@
 const express = require('express');
 const path = require('path');
 const routes = express.Router();
-const bd = require('../BDconfig/');
+const controllers = require('../controllers/');
 
 routes.get('/images/:img', (req, res) => {
     res.sendFile(path.join( __dirname,`../images/${req.params.img}`));
 });
 
-routes.get('/getAllFilms', (req, res) => {
-    bd.handleDisconnect().query('select idFilm,filmName,shortDescription,hposter from films',function(err,result){
-        if(err) throw err;
-        res.send(result);
-    });
-});
+routes.get('/films', controllers.getFilms);
+
+routes.get('/login/:data' , controllers.logIn);
 
 module.exports = routes;

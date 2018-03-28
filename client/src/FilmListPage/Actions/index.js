@@ -1,5 +1,4 @@
 export const sortByName = ()=> {
-    console.log('SORT BY NAME');
     return {
         type: 'SORT_BY_NAME',
         payload: {}
