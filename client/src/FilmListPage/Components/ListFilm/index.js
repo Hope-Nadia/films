@@ -27,7 +27,6 @@ class ListFilm extends  React.Component {
             length={this.props.filmList.length}
             type='variable'
             />
-
         )
     }
 

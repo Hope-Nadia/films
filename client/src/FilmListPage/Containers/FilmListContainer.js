@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 
 
 import * as actionCreators from "../Actions/";
-import ListFilm from '../Components/ListFilm/index';
-import {getFilmList} from "../services/index";
-import { getRightFilmList, getFirstLoad }  from '../Selectors/index';
+import ListFilm from '../Components/ListFilm/';
+import {getFilmList} from "../services/";
+import { getRightFilmList, getFirstLoad }  from '../Selectors/';
 
 class FilmListContainer extends Component {
 
@@ -26,7 +26,7 @@ class FilmListContainer extends Component {
     }
     render() {
         return (
-                <ListFilm filmList={this.props.filmList} firstLoad ={this.props.firstLoad}/>
+                <ListFilm user={JSON.stringify(this.props.user)} filmList={this.props.filmList} firstLoad ={this.props.firstLoad}/>
         );
     }
 }

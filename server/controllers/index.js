@@ -1,5 +1,9 @@
 const bd = require('../BDconfig/');
 const mysql = require('mysql');
+const bcrypt = require('bcrypt');
+
+let salt = bcrypt.genSaltSync(10);
+
 function getFilms(req, res) {
     bd.handleDisconnect().query('select idFilm,filmName,shortDescription,poster from films', function (err, result) {
         if (err) throw err;
@@ -7,29 +11,35 @@ function getFilms(req, res) {
     });
 };
 
-const logIn= async(req, res)=> {
-
+const logIn = (req, res)=> {
     let userData = req.params.data.split('&');
-    let query = 'call login(? , ?)';
-    bd.handleDisconnect().query(query,[userData[0], userData[1]] ,(err, result)=> {
-        console.log('RESULT',result);
+    let password = bcrypt.hashSync( userData[1],salt);
+    let query = 'select * from heroku_1b3ae45f7f1923d.users where email = ?';
+    bd.handleDisconnect().query(query,[userData[0]] ,(err, result)=> {
         if (err) throw err;
-        if (!result[0]) {
+        let user = result[0] ? result[0] : null;
+        if (!user) {
             return res.send({'error': 'Cant find user with this email'});
+        } else if(bcrypt.compareSync(userData[1],user.password)){
+            res.send(user);
         } else {
-            console.log(result[0].hasOwnProperty('email'));
-            if (result[0].hasOwnProperty('email')) {
-                return res.send(result[0]);
-            } else {
-                return res.send({'error': 'Not right email or password'});
-            }
+            return res.send({'error': 'Not right email or password'});
         }
     });
-
 };
 
+function signUp(req,res) {
+    let query = 'call signup(? , ?)';
+    let password = bcrypt.hashSync(req.body.password,salt);
+    bd.handleDisconnect().query(query,[req.body.email, password], (err,result)=> {
+        if(err) throw err;
+        if(result[0][0].existedUser) res.send({'error':'User with this email exists'});
+        else res.send(result[0][0]);
+    });
+};
 
 module.exports = {
     getFilms,
-    logIn
+    logIn,
+    signUp
 };

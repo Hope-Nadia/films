@@ -10,5 +10,6 @@ routes.get('/images/:img', (req, res) => {
 routes.get('/films', controllers.getFilms);
 
 routes.get('/login/:data' , controllers.logIn);
+routes.post('/signup', controllers.signUp);
 
 module.exports = routes;

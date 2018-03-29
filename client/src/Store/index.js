@@ -7,8 +7,10 @@ import searchField from '../FilmListPage/Reducers/searchField';
 import firstLoad from '../FilmListPage/Reducers/firstLoad';
 import nameSearch from '../FilmListPage/Reducers/nameSearchFilter';
 import sortByName from '../FilmListPage/Reducers/sortByName';
-import user from '../HomePage/Reducers/user';
-import loginError from '../HomePage/Reducers/loginError';
+import user from '../onAllPages/Reducers/user';
+import loginError from '../AuthPage/Reducers/loginError';
+import signupError from '../AuthPage/Reducers/signupError';
+import disableButtons from '../AuthPage/Reducers/disableButtons';
 
 const store = createStore(combineReducers ({
     filmList,
@@ -18,6 +20,8 @@ const store = createStore(combineReducers ({
     sortByName,
     user,
     loginError,
+    signupError,
+    disableButtons,
     routing: routerReducer,
     form: formReducer
     })

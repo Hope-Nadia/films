@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 
 import store from './Store/';
-import AppComponent from './Components/App/';
+import AppComponent from './onAllPages/Components/App/';
 
 injectTapEventPlugin();
 
