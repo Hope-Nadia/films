@@ -15,9 +15,9 @@ const Home =(props) => {
     <React.Fragment>
         <div className={props.classes.buttonContainer}>
         <Button onClick={props.sign}
-                className={props.wantSignUp ? props.classes.activeBut :  props.classes.notActiveBut}>SIGN UP</Button>
+                className={props.wantSignUp ? props.classes.activeBut :  props.classes.notActiveBut}>SIGN UP FORM</Button>
         <Button onClick={props.login}
-                className={props.wantLogin ? props.classes.activeBut :  props.classes.notActiveBut} >LOG IN</Button>
+                className={props.wantLogin ? props.classes.activeBut :  props.classes.notActiveBut} >LOG IN FORM</Button>
         </div>
 
         <div  className={props.wantLogin ? props.classes.activeForm :  props.classes.notActiveForm}>
