@@ -34,9 +34,6 @@ const validate = values => {
 
 const Form = (props)=> {
     const { handleSubmit} = props;
-    function func () {
-        if(props.disable  ) return 'disabled' ;
-    }
     return (
         <React.Fragment>
         <div className={props.classes.signError}>{props.signError}</div>
@@ -52,7 +49,7 @@ const Form = (props)=> {
                    component={inputField}
                    label="Password"
             />
-            <Button variant='raised' type="submit" className={props.classes.buttn} >Sign Up</Button>
+            <Button variant='raised' type="submit" className={props.classes.buttn} disabled={props.disableButton}>Sign Up</Button>
         </form>
 
         </React.Fragment>

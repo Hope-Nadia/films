@@ -27,13 +27,14 @@ class Form extends React.Component{
             then(res => {
                 if(!res.error) {
                     this.props.actions.login(res);
-                    this.props.actions.enableButtons();
                     this.props.history.push('/success');
                     localStorage.setItem('user',JSON.stringify(res));
                 }
                 else{ this.props.actions.signupFail(res.error); }
+                this.props.actions.enableButtons();
         })
             .catch(error => console.log(error));
+
     }
 
     render() {
@@ -42,7 +43,7 @@ class Form extends React.Component{
             signError: this.props.signError,
             email: this.props.email,
             password: this.props.password,
-            disable: this.props.disableButtons
+            disableButton: this.props.disableButtons
         };
         return (
             <ReduxForm {...props}/>
@@ -53,6 +54,8 @@ class Form extends React.Component{
 Form.propTypes = {
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
+    signError: PropTypes.string,
+    disableButtons: PropTypes.bool.isRequired
 };
 
 const  mapStateToProps = (state)=> {

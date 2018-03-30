@@ -9,6 +9,7 @@ import * as actionCreators from "../Actions/";
 import ReduxForm from '../Components/LogInForm/';
 import { tryLogIn } from '../services/';
 import {getLoginError} from '../Selectors/';
+import { getDisableButtons } from "../Selectors";
 
 class Form extends React.Component{
 
@@ -18,6 +19,7 @@ class Form extends React.Component{
     }
 
     submit (values) {
+        this.props.actions.disableButtons();
         tryLogIn(values).
             then(res => {
                 if(!res.hasOwnProperty('error')){
@@ -26,15 +28,22 @@ class Form extends React.Component{
                     localStorage.setItem('user',JSON.stringify(res));
                 }else {
                     this.props.actions.loginFail(res.error);
-                }
+                };
+            this.props.actions.enableButtons();
         })
             .catch(err => console.log(err));
     }
 
     render() {
-
+        let props = {
+            onSubmit: this.submit,
+            loginError: this.props.loginError,
+            email: this.props.email,
+            password: this.props.password,
+            disableButton: this.props.disableButtons
+        };
         return (
-                <ReduxForm onSubmit={this.submit} loginError={this.props.loginError} email={this.props.emailFieldValue} password={this.props.passwordFieldValue}/>
+                <ReduxForm {...props}/>
 
         )
     }
@@ -43,7 +52,8 @@ class Form extends React.Component{
 Form.propTypes = {
     emailFieldValue: PropTypes.string.isRequired,
     passwordFieldValue: PropTypes.string.isRequired,
-    loginError: PropTypes.string
+    loginError: PropTypes.string,
+    disableButtons: PropTypes.bool.isRequired
 };
 
 const  mapStateToProps = (state)=> {
@@ -51,7 +61,8 @@ const  mapStateToProps = (state)=> {
     return {
         emailFieldValue: data.user && data.user.email || '',
         passwordFieldValue:  data.user && data.user.password || '',
-        loginError: getLoginError(state)
+        loginError: getLoginError(state),
+        disableButtons: getDisableButtons(state)
     };
 };
 
