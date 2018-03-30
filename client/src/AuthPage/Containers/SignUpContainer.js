@@ -55,7 +55,7 @@ Form.propTypes = {
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     signError: PropTypes.string,
-    disableButtons: PropTypes.bool.isRequired
+    disableButtons: PropTypes.bool.isRequired,
 };
 
 const  mapStateToProps = (state)=> {
@@ -64,7 +64,7 @@ const  mapStateToProps = (state)=> {
         email: data.user && data.user.email || '',
         password:  data.user && data.user.password || '',
         signError:  getSignupError(state),
-        disableButtons: getDisableButtons(state)
+        disableButtons: getDisableButtons(state),
     };
 };
 

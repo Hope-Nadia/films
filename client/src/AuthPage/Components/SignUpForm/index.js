@@ -49,7 +49,7 @@ const Form = (props)=> {
                    component={inputField}
                    label="Password"
             />
-            <Button variant='raised' type="submit" className={props.classes.buttn} disabled={props.disableButton}>Sign Up</Button>
+            <Button variant='raised' type="submit" disabled={props.disableButton} className={props.classes.buttn}>Sign Up</Button>
         </form>
 
         </React.Fragment>
