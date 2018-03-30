@@ -5,15 +5,26 @@ const bcrypt = require('bcrypt');
 let salt = bcrypt.genSaltSync(10);
 
 function getFilms(req, res) {
-    bd.handleDisconnect().query('select idFilm,filmName,shortDescription,poster from films', function (err, result) {
+    let query = 'select idFilm,filmName,description,shortDescription,poster from films';
+    bd.handleDisconnect().query(query, function (err, result) {
         if (err) throw err;
         res.send(result);
     });
 };
 
-const logIn = (req, res)=> {
+function getFilmGallery(req, res) {
+    let query = 'select url from films inner join images using(idFilm) where idFilm= ? ';
+    let id = req.params.id;
+    bd.handleDisconnect().query(query,[id], function (err, result) {
+        console.log('result',result);
+        let images = result ?  result.map(item => item.url) : [];
+        res.send({'images': images});
+    });
+    // return res.send({'filmGallery': 'none'});
+};
+
+function  logIn (req, res){
     let userData = req.params.data.split('&');
-    let password = bcrypt.hashSync( userData[1],salt);
     let query = 'select * from heroku_1b3ae45f7f1923d.users where email = ?';
     bd.handleDisconnect().query(query,[userData[0]] ,(err, result)=> {
         if (err) throw err;
@@ -41,5 +52,6 @@ function signUp(req,res) {
 module.exports = {
     getFilms,
     logIn,
-    signUp
+    signUp,
+    getFilmGallery
 };

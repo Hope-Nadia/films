@@ -3,9 +3,9 @@ const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
 const router = express.Router();
+
 const routes = require('./routes/');
 const bd = require('./BDconfig/');
-
 
 const port = process.env.PORT || 3001;
 
@@ -17,11 +17,9 @@ bd.handleDisconnect();
 const staticFiles = express.static(path.join(__dirname, '../client/build'));
 app.use(staticFiles);
 
-app.use(routes);
+app.use('/images/', express.static(path.join(__dirname, './images')));
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join( __dirname,'../client/build/', 'index.html'));
-// });
+app.use(routes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 

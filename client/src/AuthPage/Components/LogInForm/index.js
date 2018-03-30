@@ -42,7 +42,7 @@ const Form = (props)=> {
                    label="Email"
                    />
             <Field name="password"
-                   type='text'
+                   type='password'
                    component={inputField}
                    label="Password"
             />

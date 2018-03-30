@@ -16,6 +16,8 @@ class ListFilm extends  React.Component {
             key={key}
             description={this.props.filmList[index].shortDescription}
             poster={this.props.filmList[index].poster}
+            idFilm={this.props.filmList[index].idFilm}
+            moreInfoClick={this.props.moreInfoClick}
         />
     }
     render() {
@@ -34,7 +36,8 @@ class ListFilm extends  React.Component {
 
 ListFilm.propTypes = {
     filmList: PropTypes.array,
-    firstLoad: PropTypes.bool.isRequired
+    firstLoad: PropTypes.bool.isRequired,
+    moreInfoClick: PropTypes.func.isRequired
 };
 
 export default ListFilm;

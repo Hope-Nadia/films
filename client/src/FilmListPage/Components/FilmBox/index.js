@@ -19,7 +19,7 @@ const FilmBox = (props) => {
                     <Typography component="p">
                         {props.description}
                     </Typography>
-                    <Button className={props.classes.more}>More</Button>
+                    <Button onClick={props.moreInfoClick} id={props.idFilm} name={props.name} className={props.classes.more}>More</Button>
                 </CardContent>
             </Card>
 );

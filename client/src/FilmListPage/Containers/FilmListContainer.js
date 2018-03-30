@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import PropTypes from "prop-types";
-
+import { withRouter }  from 'react-router';
 
 import * as actionCreators from "../Actions/";
 import ListFilm from '../Components/ListFilm/';
@@ -13,7 +13,7 @@ class FilmListContainer extends Component {
 
     constructor(props) {
         super(props);
-
+        this.moreInfoClick = this.moreInfoClick.bind(this);
     }
     componentWillMount() {
         if(!this.props.firstLoad){
@@ -24,9 +24,18 @@ class FilmListContainer extends Component {
                 .catch(err => console.log(err));
         }
     }
+    moreInfoClick (e) {
+        console.log('more info click',e.currentTarget.id);
+        this.props.history.push(`/filmList/film/${(e.currentTarget.name).replace(/\s/ig,'_')}/${e.currentTarget.id}`);
+    }
     render() {
+        let props = {
+            filmList: this.props.filmList,
+            moreInfoClick: this.moreInfoClick,
+            firstLoad: this.props.firstLoad
+        };
         return (
-                <ListFilm user={JSON.stringify(this.props.user)} filmList={this.props.filmList} firstLoad ={this.props.firstLoad}/>
+                <ListFilm {...props}/>
         );
     }
 }
@@ -57,4 +66,4 @@ FilmListContainer.propTypes = {
     })
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(FilmListContainer);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(FilmListContainer));
