@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 let salt = bcrypt.genSaltSync(10);
 
 function getFilms(req, res) {
-    let query = 'select idFilm,filmName,description,shortDescription,poster from films';
+    let query = 'select idFilm,filmName,description,shortDescription,hposter from films';
     bd.handleDisconnect().query(query, function (err, result) {
         if (err) throw err;
         res.send(result);
