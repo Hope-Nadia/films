@@ -9,3 +9,11 @@ export const watchFilm = (film)=> {
         }
     }
 };
+export const loadComments = (comments)=> {
+    return {
+        type: 'LOAD_COMMENTS',
+        payload: {
+          comments: comments
+        }
+    }
+};

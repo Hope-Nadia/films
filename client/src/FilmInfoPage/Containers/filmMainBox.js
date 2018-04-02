@@ -4,43 +4,31 @@ import { bindActionCreators} from 'redux';
 import PropTypes from "prop-types";
 import { withRouter }  from 'react-router';
 
-import {getRightFilmList} from "../../FilmListPage/Selectors";
+
 import { getCurrentFilm } from "../Selectors";
 import * as actionCreators from "../Actions/";
 import FilmBox from '../../FilmInfoPage/Components/Filmbox/';
-import {getFilmGallery} from '../services/';
+import {getFilmInfo} from '../services/';
 
 class FilmMainBox extends Component {
 
     constructor(props) {
-        console.log('mainp',props);
         super(props);
-        this.findRightFilm = this.findRightFilm.bind(this);
     }
 
-    componentDidMount() {
-        let cf = this.findRightFilm();
-        getFilmGallery(this.props.match.params.id).
+    componentWillMount() {
+        getFilmInfo(this.props.match.params.id).
             then(res=> {
+                console.log('res',res);
             this.props.actions.watchFilm({
-                idFilm: cf.idFilm,
-                name: cf.filmName,
-                description: cf.description,
+                idFilm: res.id,
+                name: res.nameFilm,
+                description: res.description,
                 images: res.images
             });
         })
             .catch(err => console.log(err));
     }
-
-    findRightFilm() {
-        let currentFilm = {};
-        this.props.filmList.map(film => {
-            if(`${film.idFilm}` == this.props.match.params.id) {
-                currentFilm = film;
-            }
-        });
-        return currentFilm;
-    };
 
     render() {
         let props = {
@@ -54,11 +42,15 @@ class FilmMainBox extends Component {
     }
 }
 
+FilmMainBox.propTypes = {
+    currentFilm: PropTypes.object,
+    actions: PropTypes.shape({
+        getFilmInfo: PropTypes.func.isRequired
+    })
+};
 
 const mapStateToProps = (state) => {
-    console.log('film main box',state);
     return {
-        filmList: getRightFilmList(state),
         currentFilm: getCurrentFilm(state)
     }
 };

@@ -12,6 +12,7 @@ import loginError from '../AuthPage/Reducers/loginError';
 import signupError from '../AuthPage/Reducers/signupError';
 import disableButtons from '../AuthPage/Reducers/disableButtons';
 import currentFilm from '../FilmInfoPage/Reducers/currentFilm';
+import comments from '../FilmInfoPage/Reducers/comments';
 
 const store = createStore(combineReducers ({
     filmList,
@@ -24,6 +25,7 @@ const store = createStore(combineReducers ({
     signupError,
     disableButtons,
     currentFilm,
+    comments,
     routing: routerReducer,
     form: formReducer
     })

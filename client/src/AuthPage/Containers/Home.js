@@ -41,15 +41,10 @@ class HomeContainer extends React.Component {
         );
     }
 }
-const mapStateToProps = (state) => {
-    return(    {
 
-    });
-
-};
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(actionCreators,dispatch),
     }
 };
-export default connect(mapStateToProps,mapDispatchToProps)(HomeContainer);
+export default connect(mapDispatchToProps)(HomeContainer);

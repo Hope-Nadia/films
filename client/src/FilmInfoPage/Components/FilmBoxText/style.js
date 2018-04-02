@@ -1,7 +1,4 @@
 const styles = {
-    main: {
-        width: '100%'
-    },
     content: {
         display: 'flex',
         flexDirection: 'column',

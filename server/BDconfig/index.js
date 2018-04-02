@@ -4,7 +4,8 @@ let config = {
     host: 'us-cdbr-iron-east-05.cleardb.net',
     user: 'bf1d8e55932c6d',
     password: 'c72ebe3f',
-    database: 'heroku_1b3ae45f7f1923d'
+    database: 'heroku_1b3ae45f7f1923d',
+    max_user_connections: 0
 };
 
 let  handleDisconnect = function() {

@@ -7,6 +7,7 @@ routes.get('/films', controllers.getFilms);
 
 routes.get('/login/:data' , controllers.logIn);
 routes.post('/signup', controllers.signUp);
-routes.get('/filmGallery/:id', controllers.getFilmGallery);
+routes.get('/filmInfo/:id', controllers.getFilmInfo);
+routes.get('/filmComments/:id', controllers.getFilmComments);
 
 module.exports = routes;

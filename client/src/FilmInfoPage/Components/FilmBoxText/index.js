@@ -8,16 +8,14 @@ import  styles from './style';
 
 const FilmBoxText = (props) => {
     return  (
-        <Card className={props.classes.main}>
-            <CardContent className={props.classes.content}>
+        <div className={ props.classes.content}>
                 <Typography className={props.classes.headline} variant="headline" component="h2">
                     {props.name}
                 </Typography>
                 <Typography component="p">
                     {props.description}
                 </Typography>
-            </CardContent>
-        </Card>
+        </div>
     );
 };
 

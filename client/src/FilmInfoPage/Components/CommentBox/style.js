@@ -1,12 +1,11 @@
 const styles = {
-    main: {
-        width:'80%',
+    content: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
         alignItems: 'flex-start',
-        margin: '0 auto',
-        padding: '5px'
-    }
+        justifyContent: 'flex-start',
+        marginTop: '20px'
+    },
+
 } ;
 export default styles;

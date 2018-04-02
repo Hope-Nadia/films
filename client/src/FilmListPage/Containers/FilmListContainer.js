@@ -8,6 +8,8 @@ import * as actionCreators from "../Actions/";
 import ListFilm from '../Components/ListFilm/';
 import {getFilmList} from "../services/";
 import { getRightFilmList, getFirstLoad }  from '../Selectors/';
+import {getFilmGallery} from "../../FilmInfoPage/services";
+import {getCurrentFilm} from "../../FilmInfoPage/Selectors";
 
 class FilmListContainer extends Component {
 
@@ -17,6 +19,7 @@ class FilmListContainer extends Component {
     }
     componentWillMount() {
         if(!this.props.firstLoad){
+            console.log('load films');
             getFilmList()
                 .then(res => {
                     this.props.actions.loadFilmList(res);
@@ -25,9 +28,9 @@ class FilmListContainer extends Component {
         }
     }
     moreInfoClick (e) {
-        console.log('more info click',e.currentTarget.id);
         this.props.history.push(`/filmList/film/${(e.currentTarget.name).replace(/\s/ig,'_')}/${e.currentTarget.id}`);
     }
+
     render() {
         let props = {
             filmList: this.props.filmList,
@@ -44,7 +47,7 @@ class FilmListContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         filmList: getRightFilmList(state),
-        firstLoad: getFirstLoad(state)
+        firstLoad: getFirstLoad(state),
     }
 };
 

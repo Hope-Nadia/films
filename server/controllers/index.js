@@ -5,22 +5,39 @@ const bcrypt = require('bcrypt');
 let salt = bcrypt.genSaltSync(10);
 
 function getFilms(req, res) {
-    let query = 'select idFilm,filmName,description,shortDescription,poster from films';
+    let query = 'select idFilm, filmName, shortDescription, poster from films';
     bd.handleDisconnect().query(query, function (err, result) {
         if (err) throw err;
         res.send(result);
     });
 };
 
-function getFilmGallery(req, res) {
+function getFilmInfo(req, res) {
     let query = 'select url from films inner join images using(idFilm) where idFilm= ? ';
     let id = req.params.id;
-    bd.handleDisconnect().query(query,[id], function (err, result) {
-        console.log('result',result);
-        let images = result ?  result.map(item => item.url) : [];
-        res.send({'images': images});
+    bd.handleDisconnect().query(query,[id], function (err, result1) {
+        let images = result1 ?  result1.map(item => item.url) : [];
+        let query = 'select idFilm, filmName, description from films where idFilm= ? ';
+        bd.handleDisconnect().query(query,[id], function (err, result2) {
+            res.send({
+                'id': result2[0].idFilm,
+                'nameFilm': result2[0].filmName,
+                'description': result2[0].description,
+                'images': images});
+        });
+
     });
-    // return res.send({'filmGallery': 'none'});
+
+};
+
+function getFilmComments(req, res) {
+    let query = 'select text, email from  comments left join users using(idUser) where idFilm= ? ';
+    let id = req.params.id;
+    bd.handleDisconnect().query(query,[id], function (err, result) {
+        console.log('comments result',result,id);
+        let comments = result  ?  result .map(item => item) : [];
+            res.send({'comments': comments});
+    });
 };
 
 function  logIn (req, res){
@@ -53,5 +70,6 @@ module.exports = {
     getFilms,
     logIn,
     signUp,
-    getFilmGallery
+    getFilmInfo,
+    getFilmComments
 };
