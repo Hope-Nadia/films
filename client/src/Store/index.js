@@ -8,11 +8,14 @@ import firstLoad from '../FilmListPage/Reducers/firstLoad';
 import nameSearch from '../FilmListPage/Reducers/nameSearchFilter';
 import sortByName from '../FilmListPage/Reducers/sortByName';
 import user from '../onAllPages/Reducers/user';
+import authenticated from '../onAllPages/Reducers/authenticated';
 import loginError from '../AuthPage/Reducers/loginError';
 import signupError from '../AuthPage/Reducers/signupError';
 import disableButtons from '../AuthPage/Reducers/disableButtons';
 import currentFilm from '../FilmInfoPage/Reducers/currentFilm';
 import comments from '../FilmInfoPage/Reducers/comments';
+import images from '../FilmInfoPage/Reducers/images';
+import currentComment from '../FilmInfoPage/Reducers/currentComment';
 
 const store = createStore(combineReducers ({
     filmList,
@@ -26,6 +29,9 @@ const store = createStore(combineReducers ({
     disableButtons,
     currentFilm,
     comments,
+    currentComment,
+    authenticated,
+    images,
     routing: routerReducer,
     form: formReducer
     })

@@ -6,8 +6,9 @@ const controllers = require('../controllers/');
 routes.get('/films', controllers.getFilms);
 
 routes.get('/login/:data' , controllers.logIn);
-routes.post('/signup', controllers.signUp);
 routes.get('/filmInfo/:id', controllers.getFilmInfo);
+routes.get('/filmGallery/:id', controllers.getFilmGallery);
 routes.get('/filmComments/:id', controllers.getFilmComments);
-
+routes.post('/signup', controllers.signUp);
+routes.post('/comment', controllers.sendComment);
 module.exports = routes;

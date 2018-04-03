@@ -5,11 +5,11 @@ const styles = {
         justifyContent: 'space-around',
         overflow: 'hidden',
         backgroundColor: 'white',
-        marginTop:'20px'
+        marginTop:'15px',
+        marginBottom: '15px'
     },
     gridList: {
         flexWrap: 'nowrap',
-
     },
 } ;
 export default styles;

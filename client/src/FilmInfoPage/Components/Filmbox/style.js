@@ -7,6 +7,12 @@ const styles = {
         alignItems: 'flex-start',
         margin: '0 auto',
         padding: '5px'
+    },
+    devider: {
+        width: '100%',
+    },
+    gallery: {
+        marginTop: '15px'
     }
 } ;
 export default styles;

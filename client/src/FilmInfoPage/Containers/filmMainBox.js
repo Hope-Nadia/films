@@ -19,12 +19,11 @@ class FilmMainBox extends Component {
     componentWillMount() {
         getFilmInfo(this.props.match.params.id).
             then(res=> {
-                console.log('res',res);
             this.props.actions.watchFilm({
                 idFilm: res.id,
                 name: res.nameFilm,
                 description: res.description,
-                images: res.images
+                // images: res.images
             });
         })
             .catch(err => console.log(err));
@@ -34,7 +33,6 @@ class FilmMainBox extends Component {
         let props = {
             name: this.props.currentFilm.name,
             description: this.props.currentFilm.description,
-            images: this.props.currentFilm.images
         };
         return (
           <FilmBox {...props}/>
@@ -45,7 +43,7 @@ class FilmMainBox extends Component {
 FilmMainBox.propTypes = {
     currentFilm: PropTypes.object,
     actions: PropTypes.shape({
-        getFilmInfo: PropTypes.func.isRequired
+        getFilmInfo: PropTypes.func
     })
 };
 

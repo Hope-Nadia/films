@@ -7,29 +7,40 @@ import PropTypes from "prop-types";
 
 import  styles from './style';
 
-const CommentList = (props) => {
-    let key =0;
-    return  (
-        <div className={ props.classes.content}>
+class CommentList extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            update: true
+        }
+    }
+    render () {
+        let key = 0;
+        let reverseList = [];
+        for( let i = this.props.comments.length; i--; ){
+            reverseList.push( this.props.comments[i] );
+        };
+        return  (
+            <div className={ this.props.classes.content}>
+                {reverseList.map(comment =>{
+                        key++;
+                        return (
+                            <div className={this.props.classes.comment} key={key}>
+                                <Typography className={this.props.classes.headline} variant="headline" component="h2">
+                                    {comment.email}
+                                </Typography>
+                                <Devider/>
+                                <Typography component="p">
+                                    {comment.text}
+                                </Typography>
+                            </div>
+                        )
+                    }
+                )}
 
-            {props.comments.map(comment =>{
-                key++;
-              return (
-                  <div className={props.classes.comment} key={key}>
-                      <Typography className={props.classes.headline} variant="headline" component="h2">
-                          {comment.email}
-                      </Typography>
-                      <Devider/>
-                      <Typography component="p">
-                          {comment.text}
-                      </Typography>
-                  </div>
-                     )
-                }
-            )}
-
-        </div>
-    );
+            </div>
+        );
+    }
 };
 
 CommentList.propTypes = {

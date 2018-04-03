@@ -4,6 +4,7 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom:'15px'
     },
     headline: {
         marginBottom: '10px',

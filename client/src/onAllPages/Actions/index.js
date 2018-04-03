@@ -1,9 +1,6 @@
 export const logOut =()=> {
     return {
         type: 'LOGOUT',
-        payload: {
-
-        }
     }
 };
 export const setExistUser =(user)=> {
