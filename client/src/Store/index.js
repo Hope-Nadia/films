@@ -2,20 +2,22 @@ import {combineReducers, createStore} from "redux";
 import {routerReducer} from "react-router-redux";
 import { reducer as formReducer } from 'redux-form';
 
-import filmList from '../FilmListPage/Reducers/filmList';
-import searchField from '../FilmListPage/Reducers/searchField';
-import firstLoad from '../FilmListPage/Reducers/firstLoad';
-import nameSearch from '../FilmListPage/Reducers/nameSearchFilter';
-import sortByName from '../FilmListPage/Reducers/sortByName';
-import user from '../onAllPages/Reducers/user';
-import authenticated from '../onAllPages/Reducers/authenticated';
-import loginError from '../AuthPage/Reducers/loginError';
-import signupError from '../AuthPage/Reducers/signupError';
-import disableButtons from '../AuthPage/Reducers/disableButtons';
-import currentFilm from '../FilmInfoPage/Reducers/currentFilm';
-import comments from '../FilmInfoPage/Reducers/comments';
-import images from '../FilmInfoPage/Reducers/images';
-import currentComment from '../FilmInfoPage/Reducers/currentComment';
+import authenticated from '../Main/Reducers/authenticated';
+import user from '../Main/Reducers/user';
+import searchField from '../Pages/FilmList/Reducers/searchField';
+import nameSearch from '../Pages/FilmList/Reducers/nameSearchFilter';
+import sortByName from '../Pages/FilmList/Reducers/sortByName';
+import firstLoad from '../Pages/FilmList/Reducers/firstLoad';
+import filmList from '../Pages/FilmList/Reducers/filmList';
+import loginError from '../Pages/LogIn/Reducers/loginError';
+import disableButtons from '../Pages/SignUp/Reducers/disableButtons';
+import signupError from '../Pages/SignUp/Reducers/signupError';
+import currentComment from '../Pages/FilmInfo/Reducers/currentComment';
+import currentFilm from '../Pages/FilmInfo/Reducers/currentFilm';
+import comments from '../Pages/FilmInfo/Reducers/comments';
+import images from '../Pages/FilmInfo/Reducers/images';
+import mark from '../Pages/FilmInfo/Reducers/mark';
+import markError from '../Pages/FilmInfo/Reducers/markError';
 
 const store = createStore(combineReducers ({
     filmList,
@@ -32,6 +34,8 @@ const store = createStore(combineReducers ({
     currentComment,
     authenticated,
     images,
+    mark,
+    markError,
     routing: routerReducer,
     form: formReducer
     })

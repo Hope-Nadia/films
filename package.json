@@ -17,6 +17,7 @@
     "path": "^0.12.7",
     "prop-types": "^15.6.1",
     "react-list": "^0.8.8",
+    "react-rating": "^1.1.2",
     "react-redux": "^5.0.7",
     "react-router-redux": "^4.0.8",
     "redux": "^3.7.2",
