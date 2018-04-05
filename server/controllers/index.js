@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 let salt = bcrypt.genSaltSync(10);
 
 function getFilms(req, res) {
-    let query = 'select idFilm, filmName, shortDescription, poster, averageMark from films';
+    let query = 'select idFilm, filmName, shortDescription, hposter, averageMark from films';
     bd.
     //handleDisconnect()
       connection
@@ -34,7 +34,7 @@ function getFilmInfo(req, res) {
 };
 
 function getFilmGallery(req, res) {
-    let query = 'select url from films inner join images using(idFilm) where idFilm= ? ';
+    let query = 'select hurl from films inner join images using(idFilm) where idFilm= ? ';
     let id = req.params.id;
     bd.    //handleDisconnect()
     connection.query(query,[id], function (err, result) {
