@@ -35,7 +35,11 @@ const Comments = (props) => {
 
 Comments.propTypes = {
     classes: PropTypes.object,
-    comments: PropTypes.array
+    comments: PropTypes.array,
+    currentComment:PropTypes.string,
+    writeComment: PropTypes.func,
+    leftComment: PropTypes.func,
+    auth: PropTypes.bool
 };
 
 export default withStyles(styles)(Comments);

@@ -1,12 +1,4 @@
 
-export const signupFail =(error)=> {
-    return {
-        type: 'SIGNUP_ERROR',
-        payload: {
-            error: error
-        }
-    }
-};
 export const disableButtons =()=> {
     return {
         type: 'DISABLE_BUTTONS',

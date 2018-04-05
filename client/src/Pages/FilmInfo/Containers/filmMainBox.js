@@ -39,9 +39,9 @@ class FilmMainBox extends Component {
 }
 
 FilmMainBox.propTypes = {
-    currentFilm: PropTypes.object,
+    currentFilm: PropTypes.object.isRequired,
     actions: PropTypes.shape({
-        getFilmInfo: PropTypes.func
+        watchFilm: PropTypes.func.isRequired,
     })
 };
 

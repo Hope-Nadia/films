@@ -15,9 +15,14 @@ const FilmBox = (props) => {
                 <img src={props.poster} className={props.classes.image}/>
                 </div>
                 <CardContent className={props.classes.content}>
-                    <Typography className={props.classes.headline} variant="headline" component="h2">
+                    <div className={props.classes.headContainer}>
+                    <Typography variant="headline" component="h2">
                         {props.name}
                     </Typography>
+                    <Typography className={props.classes.rating} variant="headline" component="h2">
+                        Rating : {props.mark}
+                    </Typography>
+                    </div>
                     <Typography component="p">
                         {props.description}
                     </Typography>
@@ -31,7 +36,9 @@ FilmBox.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
-    classes: PropTypes.object,
+    classes: PropTypes.object.isRequired,
+    moreInfoClick: PropTypes.func.isRequired,
+    mark: PropTypes.number
 };
 
 export default withStyles(styles)(FilmBox);

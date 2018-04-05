@@ -4,15 +4,13 @@ import PropTypes from "prop-types";
 import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
 
-import {getUser} from '../../Main/Selectors/index';
+import {getUser} from '../../../../Main/Selectors/index';
 import  styles from './style';
 
 const Success = (props)=>  {
-
         return (
             <Paper className={props.classes.main}>Hello, {props.user.email}. </Paper>
         );
-
 };
 
 Success.propTypes = {

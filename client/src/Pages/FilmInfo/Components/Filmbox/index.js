@@ -17,12 +17,12 @@ const FilmBox = (props) => {
     return  (
         <Card className={props.classes.main}>
             <FilmBoxText name={props.name} description={props.description}/>
-            <Devider className={props.classes.devider}/>
+            <Devider className={props.classes.divider}/>
             <Typography variant="headline" component="h2" className={props.classes.gallery}>Gallery</Typography>
             <GalleryBox/>
-            <Devider className={props.classes.devider}/>
+            <Devider className={props.classes.divider}/>
             <Rating/>
-            <Devider className={props.classes.devider}/>
+            <Devider className={props.classes.divider}/>
             <CommentBox/>
         </Card>
     );

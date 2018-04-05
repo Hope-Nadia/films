@@ -21,6 +21,8 @@ const FilmBoxText = (props) => {
 
 FilmBoxText.propTypes = {
     classes: PropTypes.object,
+    name: PropTypes.string,
+    description: PropTypes.string
 };
 
 export default withStyles(styles)(FilmBoxText);

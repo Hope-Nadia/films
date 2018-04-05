@@ -1,24 +1,26 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
-import Devider from 'material-ui/Divider';
 import Typography from 'material-ui/Typography';
-import Card, { CardContent } from 'material-ui/Card';
+import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import Rating from 'react-rating';
 
 import  styles from './style';
 
 const StarRating = (props) => {
-    console.log('rating props', props);
     return  (
         <div className={props.classes.root}>
             <Typography className={props.classes.headline}>MDB rating: {props.initialMark}</Typography>
-            <Typography className={props.classes.error}>{props.markError}</Typography>
+            <Typography className={props.markError==='' ? props.classes.errorNotActive : props.classes.errorActive }>
+                {props.markError}
+                <Link to={'/logIn'} className={props.classes.link}><img src="https://salty-island-73231.herokuapp.com/images/login.png" className={props.classes.arrow}/></Link>
+            </Typography>
             <Rating stop={10}
                     initialRating={props.initialMark}
                     onChange={props.sendMark}
-                    emptySymbol={<img src="http://localhost:3000/images/star.png" className={props.classes.star}/>}
-                    fullSymbol={<img src="http://localhost:3000/images/star1.png" className={props.classes.star}/>}
+                    emptySymbol={<img src="https://salty-island-73231.herokuapp.com/images/starS.png" className={props.classes.star}/>}
+                    fullSymbol={<img src="https://salty-island-73231.herokuapp.com/images/starG.png" className={props.classes.star}/>}
+                    readonly={!(props.markError ==='')}
             />
         </div>
 
@@ -27,9 +29,11 @@ const StarRating = (props) => {
 
 StarRating.propTypes = {
     classes: PropTypes.object,
-    name: PropTypes.string,
-    description: PropTypes.string,
-    images: PropTypes.array
+    initialMark: PropTypes.number,
+    markError: PropTypes.string,
+    sendMark: PropTypes.func.isRequired,
+
+
 };
 
 export default withStyles(styles)(StarRating);

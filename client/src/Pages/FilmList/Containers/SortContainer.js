@@ -16,7 +16,7 @@ class SortContainer extends Component {
      handleSort(e){
         if(e.target.value==='name') this.props.actions.sortByName();
         if(e.target.value==='') this.props.actions.noneSort();
-         // if(e.target.value==='mark') this.props.actions.sortByMark();
+        if(e.target.value==='mark') this.props.actions.sortByMark();
      }
     render() {
         let props = {
@@ -44,9 +44,7 @@ const mapDispatchToProps = (dispatch) => {
 SortContainer.propTypes = {
     sortValue: PropTypes.string,
     actions: PropTypes.shape({
-        loadFilmList: PropTypes.func,
         noneSort: PropTypes.func,
-        searchFilm: PropTypes.func,
         sortByMark: PropTypes.func,
         sortByName: PropTypes.func
     })

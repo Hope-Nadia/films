@@ -18,33 +18,36 @@ class Rating extends Component {
         this.loadAverageMark = this.loadAverageMark.bind(this);
     }
     componentWillMount() {
+
        this.loadAverageMark();
+
     }
 
     loadAverageMark() {
-        console.log('load mark');
         getFilmMark(this.props.match.params.id)
             .then(res=> {
                 if(res.mark)this.props.actions.loadMark(parseFloat(res.mark));
+                if(!this.props.authenticated) this.props.actions.markError('Please,log in to send rate.');
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
     }
 
     setMark(rate) {
-        sendMark({
-            email: this.props.currentUser.email,
-            idFilm: this.props.currentFilm.id,
-            mark: rate
-        })
-            .then(response => {
-                console.log(response);
-               if(response.mark==='not'){
-                   this.props.actions.sendMark();
-                   this.props.actions.markError('Sorry, you can\'t send mark again!');
-               }
-               this.loadAverageMark();
+        if(this.props.authenticated){
+            sendMark({
+                email: this.props.currentUser.email,
+                idFilm: this.props.currentFilm.id,
+                mark: rate
             })
-            .catch(error => console.log(error))
+                .then(response => {
+                    if(response.mark==='not'){
+                        this.props.actions.loadMark(this.props.mark);
+                        this.props.actions.markError('You can\'t rate again! Change user?');
+                    }
+                    else this.loadAverageMark();
+                })
+                .catch(error => console.log(error))
+        }
     }
 
     render() {
@@ -64,9 +67,12 @@ Rating.propTypes = {
     currentFilm: PropTypes.object,
     currentUser: PropTypes.object,
     mark: PropTypes.number,
+    authenticated: PropTypes.bool,
     markError: PropTypes.string,
     actions: PropTypes.shape({
-        loadMark: PropTypes.func
+        loadMark: PropTypes.func.isRequired,
+        markError: PropTypes.func.isRequired,
+        sendMark: PropTypes.func.isRequired,
     })
 };
 

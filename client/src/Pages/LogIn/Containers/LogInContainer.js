@@ -10,6 +10,7 @@ import ReduxForm from '../Components/LogInForm/index';
 import { tryLogIn } from '../services/index';
 import {getDisableButtons, getLoginError} from '../Selectors/index';
 
+
 class Form extends React.Component{
 
     constructor(props){
@@ -26,11 +27,7 @@ class Form extends React.Component{
                     this.props.history.push('/success');
                     localStorage.setItem('user',JSON.stringify(res));
                 }else {
-                    // console.log(this.props);
-                   // stopSubmit('login',{error: res.error});
-                    // throw new SubmissionError(res.error);
-                    // console.log('err',res.error);
-                    this.props.actions.loginFail(res.error);
+                    this.props.stopSubmit('login',{_error: res.error});
                 };
             this.props.actions.enableButtons();
         })
@@ -40,7 +37,6 @@ class Form extends React.Component{
     render() {
         let props = {
             onSubmit: this.submit,
-            loginError: this.props.loginError,
             disableButton: this.props.disableButtons
         };
         return (
@@ -52,16 +48,16 @@ class Form extends React.Component{
 Form.propTypes = {
     emailFieldValue: PropTypes.string.isRequired,
     passwordFieldValue: PropTypes.string.isRequired,
-    loginError: PropTypes.string,
     disableButtons: PropTypes.bool.isRequired,
+    stopSubmit: PropTypes.func.isRequired
 };
 
 const  mapStateToProps = (state)=> {
+    console.log('login state', state);
     let data = { user : getFormValues('login')(state) };
     return {
         emailFieldValue: data.user && data.user.email || '',
         passwordFieldValue:  data.user && data.user.password || '',
-        loginError: getLoginError(state),
         disableButtons: getDisableButtons(state)
     };
 };
@@ -69,13 +65,12 @@ const  mapStateToProps = (state)=> {
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(actionCreators,dispatch),
+        stopSubmit: bindActionCreators(stopSubmit,dispatch),
     }
 };
 
 const LogInForm = connect(mapStateToProps, mapDispatchToProps)(Form);
-// const  LogInForm = reduxForm({
-//     form: 'login'
-// })(connect(mapStateToProps, mapDispatchToProps)(Form));
+
 
 export default withRouter(LogInForm);
 

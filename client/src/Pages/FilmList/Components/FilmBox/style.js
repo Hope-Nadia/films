@@ -5,7 +5,7 @@ const styles = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        // minHeight: '200px'
+        position: 'relative'
     },
     image: {
         width:'100%',
@@ -22,9 +22,14 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'flex-end',
     },
-    headline: {
-        marginBottom: '10px',
-        width: '100%'
+    headContainer:{
+      width:'100%',
+      display: 'flex',
+      justifyContent:'space-between',
+      marginBottom:'10px'
+    },
+    rating: {
+        width: '150px'
     },
     more: {
         marginTop: '10px',

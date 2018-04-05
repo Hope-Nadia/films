@@ -6,7 +6,6 @@ const styles = {
         width:'90%',
         height: '100px',
         margin: '20px auto',
-        border: '1px solid',
         padding: '10px',
         position: 'relative'
 
@@ -14,17 +13,28 @@ const styles = {
     headline: {
       fontSize: '20px'
     },
-    error: {
+    errorActive: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems:'center',
+        height: '40px',
         position: 'absolute',
-        right: '10px',
-        top: '10px',
-        color:'red',
-        fontSize: '20px'
+        right: '5px',
+        top: '0',
+        color:'#a00f17',
+        fontSize: '15px'
+    },
+    errorNotActive: {
+        display: 'none'
     },
     star: {
-        width:'70px',
-        height: '70px'
+        width:'40px',
+        height: '40px'
     },
+    link: {
+        height:'32px',
+        marginLeft: '10px'
+    }
 
 } ;
 export default styles;

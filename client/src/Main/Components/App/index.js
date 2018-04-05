@@ -2,10 +2,10 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 
 import Home from '../../../Pages/Home/Components/Main';
-import NotFound from '../../../Pages/NotFound/index';
+import NotFound from '../../../Pages/NotFound/Components/NotFoundText/index';
 import FilmListPage from '../../../Pages/FilmList/Components/FilmListMain/index';
 import Navigate from '../../Containers/navigation';
-import Success from '../../../Pages/Success/';
+import Success from '../../../Pages/Success/Components/SuccessText/';
 import FilmMainBox from '../../../Pages/FilmInfo/Containers/filmMainBox';
 import LogInContainer from '../../../Pages/LogIn/Containers/LogInContainer';
 import SignUpForm from '../../../Pages/SignUp/Containers/SignUpContainer';

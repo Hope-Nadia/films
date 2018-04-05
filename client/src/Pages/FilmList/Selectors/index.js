@@ -3,14 +3,14 @@ import  {createSelector } from 'reselect';
 export const getFilmList = (state) => state.filmList ;
 export const getSearchNameFilter = (state) =>state.nameSearch ;
 export const getSortByNameValue = (state)=> state.sortByName ;
-export const getFirstLoadValue = (state)=> state.firstLoad;
 export const getSearchFieldValue = (state)=> state.searchField;
-//добавиться сортировка по средней оценке. export const getSortMarkValue = (state)=> state.reducer.sortByMarkReducer.filters.sortByMark ;
+export const getSortByMarkValue = (state)=> state.sortByMark ;
 
 export const getRightFilmList = createSelector(
-    [ getFilmList,getSearchNameFilter, getSortByNameValue],
-    (filmList, nameSearch, sortByName) =>{
+    [ getFilmList,getSearchNameFilter, getSortByNameValue, getSortByMarkValue],
+    (filmList, nameSearch, sortByName, sortByMark) =>{
         let newList = [];
+
             filmList.map(item => {
                 let reg = new RegExp(nameSearch,'i');
                 if(reg.test(item.filmName)) {
@@ -22,8 +22,15 @@ export const getRightFilmList = createSelector(
             newList.sort((a,b)=> {
                 if(a.filmName > b.filmName) return 1;
                 if(a.filmName < b.filmName) return -1;
+            });
+        }
+
+        if(sortByMark) {
+            newList.sort((a,b)=> {
+                if(a.averageMark < b.averageMark) return 1;
+                if(a.averageMark > b.averageMark) return -1;
             })
-        };
+        }
 
         return newList;
     }
@@ -31,16 +38,14 @@ export const getRightFilmList = createSelector(
 );
 
 export const sortingValue = createSelector(
-    [getSortByNameValue],
-    (name) => {
+    [getSortByNameValue,  getSortByMarkValue],
+    (name, mark) => {
         if(name) return 'name';
+        if(mark) return 'mark';
         return '';
     }
 );
-export const getFirstLoad = createSelector (
-    [getFirstLoadValue],
-    (firstLoad) => firstLoad
-);
+
 export const getSearchField = createSelector (
     [getSearchFieldValue],
     (value) => value

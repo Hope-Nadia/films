@@ -10,7 +10,6 @@ import  styles from './style';
 
 const validate = values => {
     const errors = {};
-
     if(!values.email) {
         errors.email = 'Required';
     } else {
@@ -30,25 +29,24 @@ const validate = values => {
 
 };
 
-
 const Form = (props)=> {
     return (
         <React.Fragment>
             <Typography variant='display3'>Log in Form</Typography>
-            <div className={props.classes.loginError}>{props.loginError}</div>
-        <form onSubmit={props.handleSubmit} className={props.classes.form}>
-            <Field name="email"
-                   type='text'
-                   component={inputField}
-                   label="Email"
-                   />
-            <Field name="password"
-                   type='password'
-                   component={inputField}
-                   label="Password"
-            />
-            <Button variant='raised' type="submit" disabled={props.disableButton} className={props.classes.buttn}>Log in</Button>
-        </form>
+            <div className={props.classes.loginError}>{props.error}</div>
+            <form onSubmit={props.handleSubmit} className={props.classes.form}>
+                <Field name="email"
+                       type='text'
+                       component={inputField}
+                       label="Email"
+                />
+                <Field name="password"
+                       type='password'
+                       component={inputField}
+                       label="Password"
+                />
+                <Button variant='raised' type="submit" disabled={props.disableButton} className={props.classes.buttn}>Log in</Button>
+            </form>
 
         </React.Fragment>
     )
@@ -56,8 +54,7 @@ const Form = (props)=> {
 
 Form.propTypes = {
     email: PropTypes.string,
-    password: PropTypes.string,
-    loginError: PropTypes.string
+    password: PropTypes.string
 };
 
 const ReduxForm = reduxForm({

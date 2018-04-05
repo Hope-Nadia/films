@@ -12,7 +12,7 @@ const port = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(router);
-bd.handleDisconnect();
+// bd.handleDisconnect();
 
 const staticFiles = express.static(path.join(__dirname, '../client/build'));
 app.use(staticFiles);

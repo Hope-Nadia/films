@@ -65,3 +65,19 @@ export const markError = (error)=> {
         }
     }
 };
+export const watchImage = (image)=> {
+    return {
+        type: 'WATCH_IMAGE',
+        payload: {
+            image: image
+        }
+    }
+};
+export const closeImage = ()=> {
+    return {
+        type: 'CLOSE_IMAGE',
+        payload: {
+
+        }
+    }
+};

@@ -4,8 +4,8 @@ import { bindActionCreators} from 'redux';
 import PropTypes from "prop-types";
 
 import * as actionCreators from "../Actions/";
-import SearchField from '../Components/SearchField/';
 import {getSearchField} from '../Selectors/';
+import SearchField from '../Components/SearchField/';
 
 class SearchFieldContainer extends Component {
 
@@ -45,11 +45,7 @@ const mapDispatchToProps = (dispatch) => {
 SearchFieldContainer.propsTypes = {
     searchFieldValue: PropTypes.string,
     actions: PropTypes.shape({
-        loadFilmList: PropTypes.func,
-        noneSort: PropTypes.func,
-        searchFilm: PropTypes.func,
-        sortByMark: PropTypes.func,
-        sortByName: PropTypes.func
+        searchFilm: PropTypes.func.isRequired
     })
 };
 

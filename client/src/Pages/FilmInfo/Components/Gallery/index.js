@@ -1,31 +1,32 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import PropTypes from "prop-types";
-import GridList, { GridListTile } from 'material-ui/GridList';
 
 import  styles from './style';
+import ImagePoster from '../../Containers/imagePoster';
 
 const Gallery = (props) => {
     let images = props.images ? props.images : [];
     return  (
+        <React.Fragment>
         <div className={props.classes.root}>
-            <GridList className={props.classes.gridList} cols={3}>
-                {
-                    images.map(image => (
-                        <GridListTile className={props.classes.element} key={image}>
-                            <img src={image} className={props.classes.image}/>
-                        </GridListTile>
-                        )
+            {
+                images.map(image => (
+                            <img key={image} src={image} className={props.classes.image} onClick={props.imageClick}/>
                     )
-                }
-            </GridList>
+                )
+            }
         </div>
+            <ImagePoster/>
+        </React.Fragment>
     );
 };
 
+
 Gallery.propTypes = {
     classes: PropTypes.object,
-    images: PropTypes.array
+    images: PropTypes.array.isRequired,
+    imageClick: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Gallery);

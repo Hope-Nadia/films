@@ -1,5 +1,5 @@
 export const getFilmInfo = async (id) => {
-    let response = await fetch(`http://localhost:3000/filmInfo/${id}`);
+    let response = await fetch(`https://salty-island-73231.herokuapp.com/filmInfo/${id}`);
     //  http://localhost:3000  https://salty-island-73231.herokuapp.com/
     let body = await response.json();
     if (response.status !== 200) throw Error(body.message);
@@ -7,7 +7,7 @@ export const getFilmInfo = async (id) => {
 };
 
 export const getFilmGallery = async (id) => {
-    let response = await fetch(`http://localhost:3000/filmGallery/${id}`);
+    let response = await fetch(`https://salty-island-73231.herokuapp.com/filmGallery/${id}`);
     //  http://localhost:3000  https://salty-island-73231.herokuapp.com/
     let body = await response.json();
     if (response.status !== 200) throw Error(body.message);
@@ -15,7 +15,7 @@ export const getFilmGallery = async (id) => {
 };
 
 export const getFilmMark = async (id) => {
-    let response = await fetch(`http://localhost:3000/filmMark/${id}`);
+    let response = await fetch(`https://salty-island-73231.herokuapp.com/filmMark/${id}`);
     //  http://localhost:3000  https://salty-island-73231.herokuapp.com/
     let body = await response.json();
     if (response.status !== 200) throw Error(body.message);
@@ -23,7 +23,7 @@ export const getFilmMark = async (id) => {
 };
 
 export const getFilmComments = async(id) =>{
-    let response = await fetch(`http://localhost:3000/filmComments/${id}`);
+    let response = await fetch(`https://salty-island-73231.herokuapp.com/filmComments/${id}`);
     //  http://localhost:3000  https://salty-island-73231.herokuapp.com/
     let body = await response.json();
     if (response.status !== 200) throw Error(body.message);
@@ -31,7 +31,7 @@ export const getFilmComments = async(id) =>{
 };
 
 export const sendComment = async(values) =>{
-    const response = await fetch('http://localhost:3000/comment', {
+    const response = await fetch('https://salty-island-73231.herokuapp.com/comment', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -48,7 +48,7 @@ export const sendComment = async(values) =>{
     return body;
 };
 export const sendMark = async(values) =>{
-    const response = await fetch('http://localhost:3000/mark', {
+    const response = await fetch('https://salty-island-73231.herokuapp.com/mark', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

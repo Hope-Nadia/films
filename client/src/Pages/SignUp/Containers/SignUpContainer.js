@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getFormValues } from 'redux-form';
+import { getFormValues, stopSubmit } from 'redux-form';
 import PropTypes from 'prop-types';
 import { bindActionCreators} from 'redux';
 import { withRouter }  from 'react-router';
@@ -18,7 +18,6 @@ class Form extends React.Component{
         this.submit = this.submit.bind(this);
     }
 
-
     submit (values) {
         this.props.actions.disableButtons();
         trySignUp(values).
@@ -28,17 +27,17 @@ class Form extends React.Component{
                     localStorage.setItem('user',JSON.stringify(res));
                     this.props.history.push('/success');
                 }
-                else{ this.props.actions.signupFail(res.error); }
+                else{
+                    this.props.stopSubmit('signUp',{_error: res.error});
+                }
                 this.props.actions.enableButtons();
         })
             .catch(error => console.log(error));
-
     }
 
     render() {
         let props = {
             onSubmit: this.submit,
-            signError: this.props.signError,
             email: this.props.email,
             password: this.props.password,
             disableButton: this.props.disableButtons
@@ -49,19 +48,11 @@ class Form extends React.Component{
     }
 }
 
-Form.propTypes = {
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    signError: PropTypes.string,
-    disableButtons: PropTypes.bool.isRequired,
-};
-
 const  mapStateToProps = (state)=> {
     let data = { user : getFormValues('signUp')(state) };
     return {
         email: data.user && data.user.email || '',
         password:  data.user && data.user.password || '',
-        signError:  getSignupError(state),
         disableButtons: getDisableButtons(state)
     };
 };
@@ -70,8 +61,18 @@ const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(actionCreators,dispatch),
         login: bindActionCreators(login,dispatch),
+        stopSubmit: bindActionCreators(stopSubmit,dispatch),
     }
 };
+
+Form.propTypes = {
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    disableButtons: PropTypes.bool.isRequired,
+    stopSubmit: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired
+};
+
 const SignUpForm = connect(mapStateToProps,mapDispatchToProps)(Form);
 
 export default withRouter(SignUpForm);

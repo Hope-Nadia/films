@@ -30,13 +30,12 @@ const validate = values => {
 
 };
 
-
 const Form = (props)=> {
     const { handleSubmit} = props;
     return (
         <React.Fragment>
             <Typography variant='display3'>Sign up Form</Typography>
-        <div className={props.classes.signError}>{props.signError}</div>
+        <div className={props.classes.signError}>{props.error}</div>
         <form onSubmit={handleSubmit} className={props.classes.form}>
 
             <Field name="email"
@@ -59,7 +58,6 @@ const Form = (props)=> {
 Form.propTypes = {
     email: PropTypes.string,
     password: PropTypes.string,
-    error: PropTypes.string
 };
 
 const ReduxForm = reduxForm({

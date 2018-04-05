@@ -34,8 +34,10 @@ class CommentBox extends Component {
                 idFilm: this.props.currentFilm.id
             })
                 . then(res => {
-                    this.props.comments.push({'text': this.props.currentComment,'email':JSON.parse(localStorage.getItem('user')).email})
-                    this.props.actions.resetComment();
+                    if(res.comment!=='error'){
+                        this.props.comments.push({'text': this.props.currentComment,'email':JSON.parse(localStorage.getItem('user')).email});
+                        this.props.actions.resetComment();
+                    }
                 })
                 .catch(error => console.log(error));
         }
@@ -61,8 +63,11 @@ CommentBox.propTypes = {
     currentFilm: PropTypes.object,
     currentUser: PropTypes.object,
     comments: PropTypes.array,
+    currentComment: PropTypes.string,
+    authenticated: PropTypes.bool,
     actions: PropTypes.shape({
-        getFilmComments: PropTypes.func
+        resetComment: PropTypes.func,
+        writeComment:PropTypes.func,
     })
 };
 

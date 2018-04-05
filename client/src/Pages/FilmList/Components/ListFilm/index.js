@@ -18,11 +18,11 @@ class ListFilm extends  React.Component {
             poster={this.props.filmList[index].poster}
             idFilm={this.props.filmList[index].idFilm}
             moreInfoClick={this.props.moreInfoClick}
+            mark={this.props.filmList[index].averageMark}
         />
     }
     render() {
-            if(this.props.filmList.length === 0 && this.props.firstLoad) return <div>Nothing to show</div>;
-
+            if(this.props.filmList.length === 0) return <div>Nothing to show</div>;
             return (
             <ReactList
             itemRenderer={this.renderItem}
@@ -35,8 +35,7 @@ class ListFilm extends  React.Component {
 } ;
 
 ListFilm.propTypes = {
-    filmList: PropTypes.array,
-    firstLoad: PropTypes.bool.isRequired,
+    filmList: PropTypes.array.isRequired,
     moreInfoClick: PropTypes.func.isRequired
 };
 

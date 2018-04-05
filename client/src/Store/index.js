@@ -7,14 +7,13 @@ import user from '../Main/Reducers/user';
 import searchField from '../Pages/FilmList/Reducers/searchField';
 import nameSearch from '../Pages/FilmList/Reducers/nameSearchFilter';
 import sortByName from '../Pages/FilmList/Reducers/sortByName';
-import firstLoad from '../Pages/FilmList/Reducers/firstLoad';
+import sortByMark from '../Pages/FilmList/Reducers/sortByMark';
 import filmList from '../Pages/FilmList/Reducers/filmList';
-import loginError from '../Pages/LogIn/Reducers/loginError';
 import disableButtons from '../Pages/SignUp/Reducers/disableButtons';
-import signupError from '../Pages/SignUp/Reducers/signupError';
 import currentComment from '../Pages/FilmInfo/Reducers/currentComment';
 import currentFilm from '../Pages/FilmInfo/Reducers/currentFilm';
 import comments from '../Pages/FilmInfo/Reducers/comments';
+import watchImage from '../Pages/FilmInfo/Reducers/watchImage';
 import images from '../Pages/FilmInfo/Reducers/images';
 import mark from '../Pages/FilmInfo/Reducers/mark';
 import markError from '../Pages/FilmInfo/Reducers/markError';
@@ -22,12 +21,10 @@ import markError from '../Pages/FilmInfo/Reducers/markError';
 const store = createStore(combineReducers ({
     filmList,
     searchField,
-    firstLoad,
     nameSearch,
     sortByName,
+    sortByMark,
     user,
-    loginError,
-    signupError,
     disableButtons,
     currentFilm,
     comments,
@@ -36,6 +33,7 @@ const store = createStore(combineReducers ({
     images,
     mark,
     markError,
+    watchImage,
     routing: routerReducer,
     form: formReducer
     })

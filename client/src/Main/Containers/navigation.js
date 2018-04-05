@@ -36,7 +36,7 @@ Navigate.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    return(    {
+    return({
         user: getUser(state)
     });
 

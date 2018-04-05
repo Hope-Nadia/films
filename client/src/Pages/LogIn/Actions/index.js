@@ -8,14 +8,7 @@ export const login = (user)=> {
         }
     }
 };
-export const loginFail=(error)=> {
-    return {
-        type: 'LOGIN_ERROR',
-        payload: {
-            error: error
-        }
-    }
-};
+
 export const disableButtons =()=> {
     return {
         type: 'DISABLE_BUTTONS',

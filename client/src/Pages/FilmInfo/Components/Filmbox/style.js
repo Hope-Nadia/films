@@ -8,7 +8,7 @@ const styles = {
         margin: '0 auto',
         padding: '5px'
     },
-    devider: {
+    divider: {
         width: '100%',
     },
     gallery: {

@@ -1,5 +1,5 @@
 export const trySignUp = async (value)=> {
-    const response = await fetch('http://localhost:3000/signup', {
+    const response = await fetch('https://salty-island-73231.herokuapp.com/signup', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

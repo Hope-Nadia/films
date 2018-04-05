@@ -1,26 +1,28 @@
 const styles = {
     root: {
         display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
+        flexWrap: 'nowrap',
+        justifyContent: 'flex-start',
+        overflowX: 'auto',
         backgroundColor: 'white',
         marginTop:'15px',
         marginBottom: '15px',
-        width: '80%',
         margin: '0 auto',
+        padding:'5px'
 
 },
     gridList: {
         flexWrap: 'nowrap',
-        overflowY: 'hidden'
+        // overflowY: 'hidden'
         // height: '100%',
     },
     element: {
         // height: '100%'
     },
     image: {
-        height: '100%',
+        height: '170px',
+        width:'30%',
+        marginRight:'10px',
         objectFit: 'cover'
     }
 } ;
