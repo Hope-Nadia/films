@@ -101,13 +101,13 @@ function sendMark(req,res) {
 };
 
 module.exports = {
+    sendComment,
+    getFilmGallery,
+    getFilmMark,
+    sendMark,
     getFilms,
     logIn,
     signUp,
     getFilmInfo,
     getFilmComments,
-    sendComment,
-    getFilmGallery,
-    getFilmMark,
-    sendMark
 };
