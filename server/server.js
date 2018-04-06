@@ -13,10 +13,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(router);
 
+app.use('/images/', express.static(path.join(__dirname, './images')));
 const staticFiles = express.static(path.join(__dirname, '../client/build'));
 app.use(staticFiles);
 
-app.use('/images/', express.static(path.join(__dirname, './images')));
+
 
 app.use(routes);
 
