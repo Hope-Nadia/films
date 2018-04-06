@@ -5,9 +5,8 @@ const bcrypt = require('bcrypt');
 let salt = bcrypt.genSaltSync(10);
 
 function getFilms(req, res) {
-    let query = 'select idFilm, filmName, shortDescription, hposter, averageMark from films';
+    let query = 'select idFilm, filmName, shortDescription, hposter, avg(mark) as averageMark  from films join  marks using(idFilm) group by idFilm';
     bd.
-    //handleDisconnect()
       connection
         .query(query, function (err, result) {
         if (err) throw err;
@@ -18,8 +17,7 @@ function getFilms(req, res) {
 function getFilmInfo(req, res) {
         let query = 'select idFilm, filmName, description from films where idFilm= ? ';
         let id = req.params.id;
-        bd.    //handleDisconnect()
-        connection.query(query,[id], function (err, result) {
+        bd.connection.query(query,[id], function (err, result) {
             if(!result[0]) res.send({
                 'id': 0,
                 'nameFilm': 'Can\'t find this film',
@@ -36,8 +34,7 @@ function getFilmInfo(req, res) {
 function getFilmGallery(req, res) {
     let query = 'select hurl from films inner join images using(idFilm) where idFilm= ? ';
     let id = req.params.id;
-    bd.    //handleDisconnect()
-    connection.query(query,[id], function (err, result) {
+    bd.connection.query(query,[id], function (err, result) {
         let images = result ?  result.map(item => item.url) : [];
             res.send({'images': images});
     });
@@ -46,8 +43,7 @@ function getFilmGallery(req, res) {
 function getFilmMark(req, res) {
     let query = 'SELECT avg(mark) as averageMark FROM marks where idFilm = ? ';
     let id = req.params.id;
-    bd.    //handleDisconnect()
-    connection.query(query,[id], function (err, result) {
+    bd.connection.query(query,[id], function (err, result) {
         let mark = result[0] ? result[0].averageMark : 'not';
         res.send({'mark': mark});
     });
@@ -56,8 +52,7 @@ function getFilmMark(req, res) {
 function getFilmComments(req, res) {
     let query = 'select text, email from  comments left join users using(idUser) where idFilm= ? ';
     let id = req.params.id;
-    bd.    //handleDisconnect()
-    connection.query(query,[id], function (err, result) {
+    bd.connection.query(query,[id], function (err, result) {
         let comments = result  ?  result .map(item => item) : [];
             res.send({'comments': comments});
     });
@@ -66,8 +61,7 @@ function getFilmComments(req, res) {
 function  logIn (req, res){
     let userData = req.params.data.split('&');
     let query = 'select * from users where email = ?';
-    bd.    //handleDisconnect()
-    connection.query(query,[userData[0]] ,(err, result)=> {
+    bd.connection.query(query,[userData[0]] ,(err, result)=> {
         if (err) throw err;
         let user = result[0] ? result[0] : null;
         if (!user) {
@@ -83,8 +77,7 @@ function  logIn (req, res){
 function signUp(req,res) {
     let query = 'call signup(? , ?)';
     let password = bcrypt.hashSync(req.body.password,salt);
-    bd.    //handleDisconnect()
-    connection.query(query,[req.body.email, password], (err,result)=> {
+    bd.connection.query(query,[req.body.email, password], (err,result)=> {
         if(err) throw err;
         if(result[0][0].existedUser) res.send({'error':'User with this email exists'});
         else res.send(result[0][0]);
@@ -93,8 +86,7 @@ function signUp(req,res) {
 
 function sendComment(req,res) {
     let query = 'insert into comments (idFilm, idUser,text) values(? ,? ,?)';
-    bd.    //handleDisconnect()
-    connection.query(query,[req.body.idFilm,req.body.idUser, req.body.text], (err,result)=> {
+    bd.connection.query(query,[req.body.idFilm,req.body.idUser, req.body.text], (err,result)=> {
         if(result )  res.send({'comment': 'send'});
         else  res.send({'comment': 'error'});
     });
@@ -102,8 +94,7 @@ function sendComment(req,res) {
 
 function sendMark(req,res) {
     let query = 'insert into marks (email,idFilm,mark) values(? , ? , ?)';
-    bd.    //handleDisconnect()
-    connection.query(query,[req.body.email,req.body.idFilm, req.body.mark], (err,result)=> {
+    bd.connection.query(query,[req.body.email,req.body.idFilm, req.body.mark], (err,result)=> {
         if(!result)res.send({'mark': 'not'});
         else res.send({'mark': 'send'});
     });
