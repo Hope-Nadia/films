@@ -1,5 +1,7 @@
+import HOST_NAME from '../../../host_name';
+
 export const trySignUp = async (value)=> {
-    const response = await fetch('https://salty-island-73231.herokuapp.com/signup', {
+    const response = await fetch(`${HOST_NAME}/signup`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
