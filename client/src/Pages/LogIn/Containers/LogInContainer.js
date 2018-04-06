@@ -53,7 +53,6 @@ Form.propTypes = {
 };
 
 const  mapStateToProps = (state)=> {
-    console.log('login state', state);
     let data = { user : getFormValues('login')(state) };
     return {
         emailFieldValue: data.user && data.user.email || '',

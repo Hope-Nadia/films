@@ -2,7 +2,7 @@
   "name": "films",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": "https://salty-island-73231.herokuapp.com/",
   "dependencies": {
     "history": "^4.7.2",
     "material-ui": "^1.0.0-beta.38",
