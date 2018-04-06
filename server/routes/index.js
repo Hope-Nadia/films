@@ -7,6 +7,7 @@ routes.get('/films', controllers.getFilms);
 routes.get('/login/:data' , controllers.logIn);
 routes.get('/filmInfo/:id', controllers.getFilmInfo);
 routes.get('/filmMark/:id', controllers.getFilmMark);
+routes.get('/existedUser/:data' , controllers.existedUser);
 routes.get('/filmGallery/:id', controllers.getFilmGallery);
 routes.get('/filmComments/:id', controllers.getFilmComments);
 

@@ -7,6 +7,7 @@ import { withRouter }  from 'react-router';
 import * as actionCreators from "../Actions/";
 import Navigation from '../Components/Navigation/'
 import { getUser } from '../Selectors/';
+import {existedUser} from '../services/';
 
 class Navigate extends React.Component {
     constructor(props){
@@ -16,7 +17,16 @@ class Navigate extends React.Component {
     componentWillMount() {
         let logedUser = localStorage.getItem('user');
         if(logedUser){
-            this.props.actions.setExistUser(JSON.parse(logedUser));
+            existedUser({
+                id:  JSON.parse(logedUser).idUser,
+                email: JSON.parse(logedUser).email
+        })
+                .then(res=> {
+                    if(res.user[0]) {
+                        this.props.actions.setExistUser(JSON.parse(logedUser));
+                    } else this.logOut();
+                })
+                .catch(error => console.log(error))
         };
     }
     logOut() {
