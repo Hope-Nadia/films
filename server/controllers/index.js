@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 let salt = bcrypt.genSaltSync(10);
 
 function getFilms(req, res) {
-    let query = 'select idFilm, filmName, shortDescription, hposter as poster, avg(mark) as averageMark  from films join  marks using(idFilm) group by idFilm';
+    let query = 'select idFilm, filmName, shortDescription, poster as poster, avg(mark) as averageMark  from films join  marks using(idFilm) group by idFilm';
     bd.
       connection
         .query(query, function (err, result) {
@@ -32,29 +32,11 @@ function getFilmInfo(req, res) {
 };
 
 function getFilmGallery(req, res) {
-    let query = 'select hurl as url from films inner join images using(idFilm) where idFilm= ? ';
+    let query = 'select url as url from films inner join images using(idFilm) where idFilm= ? ';
     let id = req.params.id;
     bd.connection.query(query,[id], function (err, result) {
         let images = result ?  result.map(item => item.url) : [];
             res.send({'images': images});
-    });
-};
-
-function getFilmMark(req, res) {
-    let query = 'SELECT avg(mark) as averageMark FROM marks where idFilm = ? ';
-    let id = req.params.id;
-    bd.connection.query(query,[id], function (err, result) {
-        let mark = result[0] ? result[0].averageMark : 'not';
-        res.send({'mark': mark});
-    });
-};
-
-function getFilmComments(req, res) {
-    let query = 'select text, email from  comments left join users using(idUser) where idFilm= ? ';
-    let id = req.params.id;
-    bd.connection.query(query,[id], function (err, result) {
-        let comments = result  ?  result .map(item => item) : [];
-            res.send({'comments': comments});
     });
 };
 
@@ -84,6 +66,15 @@ function signUp(req,res) {
     });
 };
 
+function getFilmComments(req, res) {
+    let query = 'select text, email from  comments join users using(idUser) where idFilm= ? ';
+    let id = req.params.id;
+    bd.connection.query(query,[id], function (err, result) {
+        let comments = result  ?  result .map(item => item) : [];
+        res.send({'comments': comments});
+    });
+};
+
 function sendComment(req,res) {
     let query = 'insert into comments (idFilm, idUser,text) values(? ,? ,?)';
     bd.connection.query(query,[req.body.idFilm,req.body.idUser, req.body.text], (err,result)=> {
@@ -92,9 +83,20 @@ function sendComment(req,res) {
     });
 };
 
+function getFilmMark(req, res) {
+    let query = 'SELECT avg(mark) as averageMark FROM marks where idFilm = ? ';
+    let id = req.params.id;
+    bd.connection.query(query,[id], function (err, result) {
+        let mark = result[0] ? parseFloat(result[0].averageMark.toFixed(1)) : 'not';
+        res.send({'mark': mark});
+    });
+};
+
 function sendMark(req,res) {
-    let query = 'insert into marks (email,idFilm,mark) values(? , ? , ?)';
-    bd.connection.query(query,[req.body.email,req.body.idFilm, req.body.mark], (err,result)=> {
+    let query = 'insert into marks (idUser,idFilm,mark) values(? , ? , ?)';
+    console.log(req.body);
+    bd.connection.query(query,[req.body.idUser,req.body.idFilm, req.body.mark], (err,result)=> {
+        console.log(result);
         if(!result)res.send({'mark': 'not'});
         else res.send({'mark': 'send'});
     });

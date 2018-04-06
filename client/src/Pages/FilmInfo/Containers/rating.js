@@ -35,7 +35,7 @@ class Rating extends Component {
     setMark(rate) {
         if(this.props.authenticated){
             sendMark({
-                email: this.props.currentUser.email,
+                idUser: this.props.currentUser.id,
                 idFilm: this.props.currentFilm.id,
                 mark: rate
             })
@@ -44,7 +44,7 @@ class Rating extends Component {
                         this.props.actions.loadMark(this.props.mark);
                         this.props.actions.markError('You can\'t rate again! Change user?');
                     }
-                    else this.loadAverageMark();
+                    this.loadAverageMark();
                 })
                 .catch(error => console.log(error))
         }

@@ -58,7 +58,7 @@ export const sendMark = async(values) =>{
         },
         body: JSON.stringify({
             mark: values.mark,
-            email: values.email,
+            idUser: values.idUser,
             idFilm: values.idFilm
         })
     });

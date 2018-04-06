@@ -18,7 +18,7 @@ class ListFilm extends  React.Component {
             poster={this.props.filmList[index].poster}
             idFilm={this.props.filmList[index].idFilm}
             moreInfoClick={this.props.moreInfoClick}
-            mark={this.props.filmList[index].averageMark}
+            mark={parseFloat(this.props.filmList[index].averageMark.toFixed(1))}
         />
     }
     render() {
