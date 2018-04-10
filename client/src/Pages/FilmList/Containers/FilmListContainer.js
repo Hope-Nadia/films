@@ -8,6 +8,7 @@ import * as actionCreators from "../Actions/";
 import ListFilm from '../Components/ListFilm/';
 import {getFilmList} from "../services/";
 import { getRightFilmList }  from '../Selectors/';
+import {getAdmin} from "../../../Admin/Selectors";
 
 class FilmListContainer extends Component {
 
@@ -41,7 +42,8 @@ class FilmListContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        filmList: getRightFilmList(state)
+        filmList: getRightFilmList(state),
+        admin: getAdmin(state)
     }
 };
 

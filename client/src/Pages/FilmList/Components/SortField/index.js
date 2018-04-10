@@ -10,7 +10,7 @@ import styles from "./style";
 const SortField = (props)=>{
     return(
         <div>
-        <InputLabel className={props.classes.field}>Sort by: </InputLabel>
+            <InputLabel className={props.classes.field}>Sort by: </InputLabel>
             <Select
                 value={props.value}
                 onChange={props.handleSort}

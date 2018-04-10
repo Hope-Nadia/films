@@ -17,6 +17,7 @@ import watchImage from '../Pages/FilmInfo/Reducers/watchImage';
 import images from '../Pages/FilmInfo/Reducers/images';
 import mark from '../Pages/FilmInfo/Reducers/mark';
 import markError from '../Pages/FilmInfo/Reducers/markError';
+import admin from '../Admin/Reducers/admin';
 
 const store = createStore(combineReducers ({
     filmList,
@@ -34,6 +35,7 @@ const store = createStore(combineReducers ({
     mark,
     markError,
     watchImage,
+    admin,
     routing: routerReducer,
     form: formReducer
     })

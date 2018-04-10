@@ -16,8 +16,18 @@ const styles = {
     functions: {
         display: 'flex',
         justifyContent: 'space-around',
-        alignItems:'baseline',
-        width: '50%'
+        alignItems:'center',
+        // alignItems:'baseline',
+        width: '50%',
+    },
+    activeLink: {
+        display:'block',
+        width: '64px',
+        height: '64px',
+        marginLeft: '10px'
+    },
+    notActiveLink :{
+        display: 'none'
     }
 
 } ;

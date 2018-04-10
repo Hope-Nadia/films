@@ -1,19 +1,18 @@
 const mysql = require('mysql');
+//
+// let config = {
+//     host: 'us-cdbr-iron-east-05.cleardb.net',
+//     user: 'bf1d8e55932c6d',
+//     password: 'c72ebe3f',
+//     database: 'heroku_1b3ae45f7f1923d',
+// };
 
 let config = {
-    host: 'us-cdbr-iron-east-05.cleardb.net',
-    user: 'bf1d8e55932c6d',
-    password: 'c72ebe3f',
-    database: 'heroku_1b3ae45f7f1923d',
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'filmcatalog',
 };
-
-// let config = {
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'root',
-//     database: 'filmcatalog',
-//     max_user_connections: '0',
-// };
 
 let Connection = mysql.createConnection(config);
 //

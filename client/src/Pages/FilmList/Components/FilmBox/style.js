@@ -31,6 +31,9 @@ const styles = {
     rating: {
         width: '150px'
     },
+    text:{
+      width: '100%'
+    },
     more: {
         marginTop: '10px',
         color: 'black',

@@ -5,6 +5,7 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import PropTypes from "prop-types";
 
+import DeleteFilmButton from '../../../../Admin/Containers/deleteFilmButton';
 import  styles from './style';
 
 const FilmBox = (props) => {
@@ -23,11 +24,12 @@ const FilmBox = (props) => {
                         Rating : {props.mark}
                     </Typography>
                     </div>
-                    <Typography component="p">
+                    <Typography className={props.classes.text} component="p">
                         {props.description}
                     </Typography>
                     <Button onClick={props.moreInfoClick} id={props.idFilm} name={props.name} className={props.classes.more}>More</Button>
                 </CardContent>
+                <DeleteFilmButton idFilm={props.idFilm} name={props.name}/>
             </Card>
 );
 };

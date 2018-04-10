@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import { bindActionCreators} from 'redux';
 import { withRouter }  from 'react-router';
 
-import * as actionCreators from "../Actions/index";
-import ReduxForm from '../Components/LogInForm/index';
-import { tryLogIn } from '../services/index';
-import {getDisableButtons, getLoginError} from '../Selectors/index';
+import * as actionCreators from "../Actions/";
+import { loginAdmin } from '../../../Admin/Actions/';
+import ReduxForm from '../Components/LogInForm/';
+import { tryLogIn } from '../services/';
+import {getDisableButtons, getLoginError} from '../Selectors/';
 
 
 class Form extends React.Component{
@@ -24,6 +25,7 @@ class Form extends React.Component{
             then(res => {
                 if(!res.hasOwnProperty('error')){
                     this.props.actions.login(res);
+                    if(res.email==='admin@admin.dmn') this.props.loginAdmin();
                     this.props.history.push('/success');
                     localStorage.setItem('user',JSON.stringify(res));
                 }else {
@@ -65,6 +67,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(actionCreators,dispatch),
         stopSubmit: bindActionCreators(stopSubmit,dispatch),
+        loginAdmin: bindActionCreators(loginAdmin,dispatch)
     }
 };
 

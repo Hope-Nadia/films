@@ -1,6 +1,7 @@
 const styles = {
     field: {
         marginRight: '10px',
+        height: '50px'
     },
 
 } ;

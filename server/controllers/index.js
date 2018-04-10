@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 let salt = bcrypt.genSaltSync(10);
 
 function getFilms(req, res) {
-    let query = 'select idFilm, filmName, shortDescription, hposter as poster, avg(mark) as averageMark  from films join  marks using(idFilm) group by idFilm';
+    let query = 'select idFilm, filmName, shortDescription, poster as poster, averageMark  from films';
     bd.
       connection
         .query(query, function (err, result) {
@@ -32,7 +32,7 @@ function getFilmInfo(req, res) {
 };
 
 function getFilmGallery(req, res) {
-    let query = 'select hurl as url from films inner join images using(idFilm) where idFilm= ? ';
+    let query = 'select url as url from films inner join images using(idFilm) where idFilm= ? ';
     let id = req.params.id;
     bd.connection.query(query,[id], function (err, result) {
         let images = result ?  result.map(item => item.url) : [];
@@ -60,7 +60,6 @@ function  existedUser(req, res){
     let userData = req.params.data.split('&');
     let query = 'select idUser from users where idUser = ? and email = ?';
     bd.connection.query(query,[userData[0], userData[1]] ,(err, result)=> {
-        console.log(result);
     res.send({'user': result});
     });
 };
@@ -103,19 +102,27 @@ function getFilmMark(req, res) {
 
 function sendMark(req,res) {
     let query = 'insert into marks (idUser,idFilm,mark) values(? , ? , ?)';
-    console.log(req.body);
     bd.connection.query(query,[req.body.idUser,req.body.idFilm, req.body.mark], (err,result)=> {
-        console.log(result);
         if(!result)res.send({'mark': 'not'});
         else res.send({'mark': 'send'});
     });
 };
+
+function deleteFilm(req,res) {
+    let query = 'delete from films where idFilm = ?';
+    console.log(req.body);
+    bd.connection.query(query,[req.body.id], (err,result)=> {
+        console.log(result);
+        res.send({'delete': true});
+    });
+}
 
 module.exports = {
     sendComment,
     getFilmGallery,
     getFilmMark,
     sendMark,
+    deleteFilm,
     getFilms,
     logIn,
     signUp,

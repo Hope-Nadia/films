@@ -14,4 +14,6 @@ routes.get('/filmComments/:id', controllers.getFilmComments);
 routes.post('/signup', controllers.signUp);
 routes.post('/comment', controllers.sendComment);
 routes.post('/mark', controllers.sendMark);
+
+routes.delete('/film', controllers.deleteFilm);
 module.exports = routes;
