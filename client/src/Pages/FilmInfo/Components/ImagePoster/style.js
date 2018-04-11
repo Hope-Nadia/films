@@ -1,8 +1,8 @@
 const styles = {
     root: {
         display:'block',
-        width:'1500px',
-        height:'800px',
+        width:'90vw',
+        height:'70vh',
         position: 'absolute',
         top: '100px',
         left:'50%',

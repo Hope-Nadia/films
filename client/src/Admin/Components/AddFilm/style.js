@@ -24,7 +24,7 @@ const styles = {
         border: '1px solid red',
         padding: '3px'
     },
-    loginError: {
+    addError: {
         margin:'20px auto',
         color: 'red',
         width:'300px',

@@ -6,7 +6,8 @@ error: {
     marginTop:'3px'
 },
     field: {
-    width: '100%'
+    width: '100%',
+    marginBottom: '5px'
     }
 } ;
 export default styles;

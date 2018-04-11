@@ -16,7 +16,7 @@ const validate = values => {
       if(values.description.length < 60)   errors.description='Required more detailed description';
     };
     if(!values.shortDescription) errors.shortDescription='Required';
-    if(!values.poster) errors.poster='Required';
+    if(values.poster && !(/^https?:\/\/.+\.(?:jpg|gif|png)$/gmi.test(values.poster))) errors.poster='Not right url';
     return errors;
 
 };
@@ -25,7 +25,7 @@ const Form = (props)=> {
     return (
         <React.Fragment>
             <Typography variant='display3'>Add Film Form</Typography>
-            <div className={props.classes.loginError}>{props.error}</div>
+            <div className={props.classes.addError}>{props.error}</div>
             <form onSubmit={props.handleSubmit} className={props.classes.form}>
                 <Field name="name"
                        type='text'
@@ -48,6 +48,11 @@ const Form = (props)=> {
                        component={inputField}
                        label="Poster URL"
                 />
+                <Field name="images"
+                       type='text'
+                       component={inputField}
+                       label="Images URL"
+                />
                 <Button variant='raised' type="submit" className={props.classes.buttn}>Add new film </Button>
             </form>
 
@@ -56,7 +61,7 @@ const Form = (props)=> {
 };
 
 Form.propTypes = {
-
+    classes: PropTypes.object
 };
 
 const ReduxForm = reduxForm({
@@ -65,42 +70,3 @@ const ReduxForm = reduxForm({
 })(Form);
 
 export default withStyles(styles)(ReduxForm);
-
-{/*<React.Fragment>*/}
-    {/*<div>*/}
-        {/*Add film Form*/}
-    {/*</div>*/}
-    {/*<form noValidate className={props.classes.form}>*/}
-        {/*<TextField*/}
-            {/*id="name"*/}
-            {/*label="Name"*/}
-            {/*className={props.classes.field}*/}
-            {/*value={props.name}*/}
-            {/*onChange={props.handleField('name')}*/}
-        {/*/>*/}
-        {/*<TextField*/}
-            {/*id="description"*/}
-            {/*label="Description"*/}
-            {/*className={props.classes.field}*/}
-            {/*value={props.description}*/}
-            {/*onChange={props.handleField('description')}*/}
-            {/*multiline*/}
-        {/*/>*/}
-        {/*<TextField*/}
-            {/*id="shortDescription"*/}
-            {/*label="Short description"*/}
-            {/*className={props.classes.field}*/}
-            {/*value={props.shortDescription}*/}
-            {/*onChange={props.handleField('shortDescription')}*/}
-            {/*multiline*/}
-        {/*/>*/}
-        {/*<TextField*/}
-            {/*id="poster"*/}
-            {/*label='Poster URL'*/}
-            {/*className={props.classes.field}*/}
-            {/*value={props.poster}*/}
-            {/*onChange={props.handleField('poster')}*/}
-        {/*/>*/}
-        {/*<Button onClick={props.addFilm}>Add new film</Button>*/}
-    {/*</form>*/}
-{/*</React.Fragment>*/}

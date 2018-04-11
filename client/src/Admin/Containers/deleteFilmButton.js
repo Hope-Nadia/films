@@ -23,7 +23,6 @@ class DeleteFilmButton extends Component {
     }
 
     deleteFilm(){
-        console.log(this.props);
         if(window.confirm('DO you really wnat to delete it?')){
             deleteFilm(this.props.idFilm)
                 .then(res =>{

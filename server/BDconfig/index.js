@@ -15,6 +15,7 @@ let config = {
 };
 
 let Connection = mysql.createConnection(config);
+module.exports.connection = Connection;
 //
 // let  handleDisconnect = function() {
 //
@@ -37,5 +38,5 @@ let Connection = mysql.createConnection(config);
 //     return connection;
 // };
 
-module.exports.connection = Connection;
+
 // module.exports.handleDisconnect = handleDisconnect;

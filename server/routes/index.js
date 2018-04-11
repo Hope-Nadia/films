@@ -15,5 +15,7 @@ routes.post('/signup', controllers.signUp);
 routes.post('/comment', controllers.sendComment);
 routes.post('/mark', controllers.sendMark);
 
+routes.put('/newFilm', controllers.addFilm);
+
 routes.delete('/film', controllers.deleteFilm);
 module.exports = routes;

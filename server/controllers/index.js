@@ -92,7 +92,7 @@ function sendComment(req,res) {
 };
 
 function getFilmMark(req, res) {
-    let query = 'SELECT avg(mark) as averageMark FROM marks where idFilm = ? ';
+    let query = 'SELECT  averageMark FROM films where idFilm = ? ';
     let id = req.params.id;
     bd.connection.query(query,[id], function (err, result) {
         let mark = result[0] ? parseFloat(result[0].averageMark.toFixed(1)) : 'not';
@@ -110,12 +110,22 @@ function sendMark(req,res) {
 
 function deleteFilm(req,res) {
     let query = 'delete from films where idFilm = ?';
-    console.log(req.body);
     bd.connection.query(query,[req.body.id], (err,result)=> {
-        console.log(result);
         res.send({'delete': true});
     });
 }
+
+function addFilm(req,res) {
+    let query = 'call addFilm(? , ? , ? , ? , ?, ?);';
+    console.log(req.body);
+    bd.connection.query(query,[req.body.name, req.body.description, req.body.shortDescription, req.body.poster,req.body.poster, req.body.images], (err,result)=> {
+        console.log(result[0][0].film);
+        if(result==undefined) res.send({'add': false});
+        else res.send({'add': result[0][0].film});
+    });
+
+}
+
 
 module.exports = {
     sendComment,
@@ -123,6 +133,7 @@ module.exports = {
     getFilmMark,
     sendMark,
     deleteFilm,
+    addFilm,
     getFilms,
     logIn,
     signUp,
