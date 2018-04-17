@@ -18,10 +18,6 @@ class DeleteFilmButton extends Component {
         this.deleteFilm=this.deleteFilm.bind(this);
     }
 
-    componentWillMount() {
-
-    }
-
     deleteFilm(){
         if(window.confirm('DO you really wnat to delete it?')){
             deleteFilm(this.props.idFilm)
@@ -63,7 +59,8 @@ const mapDispatchToProps = (dispatch) => {
 
 DeleteFilmButton.propTypes = {
     filmList: PropTypes.array,
-    admin: PropTypes.bool
+    admin: PropTypes.bool,
+    loadFilmList: PropTypes.func
 };
 
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(DeleteFilmButton));

@@ -8,7 +8,6 @@ export default function currentFilm (state={} , action)
                 id: action.payload.id,
                 name: action.payload.name,
                 description: action.payload.description,
-                images: action.payload.images
             };
             break;
         }

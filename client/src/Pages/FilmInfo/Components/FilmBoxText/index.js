@@ -12,7 +12,7 @@ const FilmBoxText = (props) => {
                 <Typography className={props.classes.headline} variant="headline" component="h2">
                     {props.name}
                 </Typography>
-                <Typography component="p">
+                <Typography component="div">
                     {props.description}
                 </Typography>
         </div>

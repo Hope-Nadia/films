@@ -19,7 +19,7 @@ class CommentBox extends Component {
     }
 
     componentWillMount() {
-        getFilmComments(this.props.match.params.id).
+        getFilmComments(parseInt(this.props.match.params.id)).
             then(res => {
                 this.props.actions.loadComments(res.comments);
             this.props.actions.resetComment();

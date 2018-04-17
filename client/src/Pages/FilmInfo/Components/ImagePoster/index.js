@@ -9,7 +9,7 @@ const Slider = (props) => {
     return  (
         <div className={props.active ?  props.classes.root : props.classes.rootNotActive} >
             <img src={props.image} className={props.classes.image}/>
-            <img src={`${HOST_NAME}/images/cancel.png`} className={props.classes.close} onClick={props.closePoster}/>
+            <img src={`${HOST_NAME}/images/cancel.png`} alt="" className={props.classes.close} onClick={props.closePoster}/>
         </div>
     );
 };

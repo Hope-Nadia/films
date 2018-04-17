@@ -9,6 +9,7 @@ const inputField = ({
                          input,
                          label,
                          type,
+                         val,
                          meta:{ error, submitFailed},
                          classes
                      }) => (

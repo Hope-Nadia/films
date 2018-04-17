@@ -16,14 +16,18 @@ class AddFilmForm extends Component {
         this.submit=this.submit.bind(this);
     }
     submit(values) {
+        //обрабатывается строка с картинками для корректного занесения в бд
           if(!values.poster) values.poster = 'http://localhost:3000/images/noimage.jpg';
-          let gallery  = values.images;
-          values.images = '';
-          gallery = gallery.split(',').map( item => {
-                return item.trim();
-              }
-          );
-          values.images = gallery.join(',');
+          let gallery  = values.images ? values.images : '';
+          if(gallery!==''){
+              values.images = '';
+              gallery = gallery.split(',').map( item => {
+                      return item.trim();
+                  }
+              );
+              values.images = gallery.join(',');
+          } else values.images=gallery;
+
           addFilm(values)
               .then(res => {
                   if(res.add) this.props.history.push(`/filmList/film/${(values.name).replace(/\s/ig,'_')}/${res.add}`);
@@ -42,12 +46,6 @@ class AddFilmForm extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-
-    }
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(actionCreators,dispatch),
@@ -56,7 +54,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 AddFilmForm.propTypes = {
-
+    stopSubmit: PropTypes.func.isRequired
 };
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(AddFilmForm));
+export default withRouter(connect(mapDispatchToProps)(AddFilmForm));

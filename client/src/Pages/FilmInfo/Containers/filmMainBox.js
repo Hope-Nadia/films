@@ -8,6 +8,7 @@ import * as actionCreators from "../Actions/";
 import { getCurrentFilm } from "../Selectors";
 import {getFilmInfo} from '../services/';
 import FilmBox from '../../FilmInfo/Components/Filmbox/';
+import {getAdmin} from "../../../Admin/Selectors";
 
 class FilmMainBox extends Component {
 
@@ -16,8 +17,8 @@ class FilmMainBox extends Component {
     }
 
     componentWillMount() {
-        getFilmInfo(this.props.match.params.id).
-            then(res=> {
+        getFilmInfo(parseInt(this.props.match.params.id)).
+    then(res=> {
             this.props.actions.watchFilm({
                 idFilm: res.id,
                 name: res.nameFilm,
@@ -31,6 +32,7 @@ class FilmMainBox extends Component {
         let props = {
             name: this.props.currentFilm.name,
             description: this.props.currentFilm.description,
+            admin: this.props.admin
         };
         return (
           <FilmBox {...props}/>
@@ -40,6 +42,7 @@ class FilmMainBox extends Component {
 
 FilmMainBox.propTypes = {
     currentFilm: PropTypes.object.isRequired,
+    admin: PropTypes.bool,
     actions: PropTypes.shape({
         watchFilm: PropTypes.func.isRequired,
     })
@@ -47,7 +50,8 @@ FilmMainBox.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        currentFilm: getCurrentFilm(state)
+        currentFilm: getCurrentFilm(state),
+        admin: getAdmin(state)
     }
 };
 

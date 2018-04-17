@@ -6,6 +6,7 @@ import Devider from 'material-ui/Divider';
 import PropTypes from "prop-types";
 
 import  styles from './style';
+import DeleteComment from '../../../../Admin/Containers/deleteComment';
 
 class CommentList extends React.Component{
     constructor(props){
@@ -25,7 +26,8 @@ class CommentList extends React.Component{
                 {reverseList.map(comment =>{
                         key++;
                         return (
-                            <div className={this.props.classes.comment} key={key}>
+                            <div className={this.props.classes.box} key={key}>
+                            <div className={this.props.classes.comment} >
                                 <Typography className={this.props.classes.headline} variant="headline" component="h2">
                                     {comment.email}
                                 </Typography>
@@ -33,6 +35,8 @@ class CommentList extends React.Component{
                                 <Typography component="p">
                                     {comment.text}
                                 </Typography>
+                            </div>
+                            <DeleteComment email={comment.email} text={comment.text}/>
                             </div>
                         )
                     }

@@ -4,6 +4,7 @@ import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import PropTypes from "prop-types";
+import HOST_NAME from "../../../../host_name";
 
 import DeleteFilmButton from '../../../../Admin/Containers/deleteFilmButton';
 import  styles from './style';
@@ -30,6 +31,11 @@ const FilmBox = (props) => {
                     <Button onClick={props.moreInfoClick} id={props.idFilm} name={props.name} className={props.classes.more}>More</Button>
                 </CardContent>
                 <DeleteFilmButton idFilm={props.idFilm} name={props.name}/>
+                <div onClick={props.editClick}
+                        id={props.idFilm}
+                        className={props.admin ? props.classes.activeLink : props.classes.notActiveLink}>
+                    <img src={`${HOST_NAME}/images/edit.png`} className={props.classes.icon}/>
+                </div>
             </Card>
 );
 };

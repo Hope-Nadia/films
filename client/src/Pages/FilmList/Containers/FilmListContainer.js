@@ -15,6 +15,7 @@ class FilmListContainer extends Component {
     constructor(props) {
         super(props);
         this.moreInfoClick = this.moreInfoClick.bind(this);
+        this.editClick = this.editClick.bind(this);
     }
 
     componentWillMount() {
@@ -28,11 +29,15 @@ class FilmListContainer extends Component {
     moreInfoClick (e) {
         this.props.history.push(`/filmList/film/${(e.currentTarget.name).replace(/\s/ig,'_')}/${e.currentTarget.id}`);
     }
-
+    editClick (e) {
+        this.props.history.push(`/filmList/film/${e.currentTarget.id}`);
+    }
     render() {
         let props = {
             filmList: this.props.filmList,
             moreInfoClick: this.moreInfoClick,
+            editClick: this.editClick,
+            admin: this.props.admin
         };
         return (
                 <ListFilm {...props}/>

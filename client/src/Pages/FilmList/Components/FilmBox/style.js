@@ -38,6 +38,18 @@ const styles = {
         marginTop: '10px',
         color: 'black',
         fontStyle: 'bold',
+    },
+    activeLink:{
+        display: 'block',
+        marginLeft:'5px',
+        marginRight:'5px',
+    },
+    icon: {
+        width: '60px',
+        height: '60px'
+    },
+    notActiveLink:{
+        display: 'none'
     }
 
 } ;

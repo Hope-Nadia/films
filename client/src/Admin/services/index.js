@@ -35,3 +35,38 @@ export const addFilm = async(values) =>{
     if(response.status !== 200) throw Error(body.message);
     return body;
 };
+
+export const getFullFilmInfo = async (id) => {
+    let response = await fetch(`${HOST_NAME}/fullFilmInfo/${id}`);
+    let body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    return body;
+};
+export const editFilm = async(values) =>{
+    const response = await fetch(`${HOST_NAME}/editedFilm`, {
+        method: 'PATCH',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+    });
+    const body = await response.json();
+    if(response.status !== 200) throw Error(body.message);
+    return body;
+};
+
+
+export const deleteOneComment = async(values) =>{
+    const response = await fetch(`${HOST_NAME}/comment`, {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+    });
+    const body = await response.json();
+    if(response.status !== 200) throw Error(body.message);
+    return body;
+};

@@ -12,7 +12,7 @@ const Gallery = (props) => {
         <div className={props.classes.root}>
             {
                 images.map(image => (
-                            <img key={image} src={image} className={props.classes.image} onClick={props.imageClick}/>
+                            <img key={image} src={image} alt="" className={props.classes.image} onClick={props.imageClick}/>
                     )
                 )
             }

@@ -13,6 +13,12 @@ const styles = {
     },
     gallery: {
         marginTop: '15px'
+    },
+    activeLink:{
+        display: 'block'
+    },
+    notActiveLink: {
+        display: 'none'
     }
 } ;
 export default styles;

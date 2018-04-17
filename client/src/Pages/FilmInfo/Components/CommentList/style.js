@@ -16,6 +16,11 @@ const styles = {
         margin: '5px',
         padding: '10px',
         borderRadius: '5px'
+    },
+    box: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent:'center'
     }
 
 } ;

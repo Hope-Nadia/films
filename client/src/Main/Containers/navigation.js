@@ -20,7 +20,7 @@ class Navigate extends React.Component {
         if(logedUser){
             existedUser({
                 id:  logedUser.idUser,
-                email: logedUser.email
+                email: logedUser.email.trim()
         })
                 .then(res=> {
                     if(res.user[0]) {
@@ -45,6 +45,7 @@ class Navigate extends React.Component {
 
 Navigate.propTypes = {
     user: PropTypes.object,
+    loginAdmin: PropTypes.func
 };
 
 const mapStateToProps = (state) => {

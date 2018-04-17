@@ -7,7 +7,7 @@ error: {
 },
     field: {
     width: '100%',
-    marginBottom: '5px'
+    marginBottom: '10px'
     }
 } ;
 export default styles;

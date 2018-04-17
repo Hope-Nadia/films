@@ -30,6 +30,26 @@ function getFilmInfo(req, res) {
             });
         });
 };
+function getFullFilmInfo(req, res) {
+    let query = 'select idFilm, filmName, description, shortDescription, poster from films where idFilm= ? ';
+    let id = req.params.id;
+    bd.connection.query(query,[id], function (err, result) {
+        if(!result[0]) res.send({
+            'id': 0,
+            'nameFilm': 'Can\'t find this film',
+            'description': '',
+            'shortDescription': '',
+            'poster': ''
+        });
+        else res.send({
+            'id': result[0].idFilm,
+            'nameFilm': result[0].filmName,
+            'description': result[0].description,
+            'shortDescription': result[0].shortDescription,
+            'poster': result[0].poster
+        });
+    });
+};
 
 function getFilmGallery(req, res) {
     let query = 'select url as url from films inner join images using(idFilm) where idFilm= ? ';
@@ -126,6 +146,28 @@ function addFilm(req,res) {
 
 }
 
+function editFilm(req,res) {
+    let query = 'update films set ';
+    let cond = [];
+
+    for( let i in req.body) {
+        if(i!=='id')cond.push(`${i} = "${req.body[i]}"`);
+    };
+    query = query + cond.join(',') + ` where idFilm=${req.body.id}` ;
+    bd.connection.query(query,[req.body.id], (err,result)=> {
+       if(result!=undefined && result.changedRows) res.send({edit:true});
+       else  res.send({edit:false});
+    });
+}
+
+function deleteComment(req,res) {
+    let query=`delete from comments  where idUser = (select idUser from users where email="${req.body.email}") and idFilm= ${req.body.id} and text = "${req.body.text}" `;
+    bd.connection.query(query,[req.body.id], (err,result)=> {
+        if(result!==undefined && result.affectedRows > 0)res.send({ 'delete' : true });
+        else res.send({ 'delete' : false });
+    });
+
+}
 
 module.exports = {
     sendComment,
@@ -140,4 +182,7 @@ module.exports = {
     getFilmInfo,
     getFilmComments,
     existedUser,
+    getFullFilmInfo,
+    editFilm,
+    deleteComment
 };
